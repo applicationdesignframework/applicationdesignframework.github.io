@@ -1,5 +1,5 @@
 # Application Design Framework (ADF)
-Builders maintain and evolve products over time. They need to do so safely (reduce blast radius) and effectively (build on existing knowledge) to reduce risk and increase velocity.
+Builders maintain and evolve applications over time. They need to do so safely (reduce blast radius) and effectively (build on existing knowledge) to reduce risk and increase velocity.
 
 **ADF** aims to help achieve that by introducing the following recommendations:
 1. **Identify application components** to establish component boundaries and integration interfaces. Split the application into components using the following software boundaries or “fracture planes” (by [Matthew Skelton](https://blog.matthewskelton.net/about/)): 1/ Business Domain Bounded Context 2/ Regulatory Compliance 3/ Change Cadence 4/ Team Location 5/ Risk 6/ Performance Isolation 7/ Technology 8/ User Personas.
