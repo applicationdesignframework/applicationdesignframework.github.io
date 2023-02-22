@@ -3,7 +3,7 @@ Builders maintain and evolve applications over time. They need to do so safely (
 
 **ADF** aims to help achieve that by introducing the following recommendations:
 1. **Work backwards through use cases or [press release/frequently asked questions (PR/FAQ)](https://productstrategy.co/working-backwards-the-amazon-prfaq-for-product-innovation/) or [pitch](https://basecamp.com/shapeup/1.5-chapter-06)** to clarify the problem and the solution.
-2. **Write user stories and acceptance criteria for each use case** to start the conversation about requirements.
+2. **Write user stories and acceptance criteria** to start the conversation about requirements.
 3. **Write requirements** to guide architectural decisions.
 4. **Design solution architecture** to address the requirements.
 5. **Identify solution components** to establish boundaries and integration interfaces. Organize components using the following software boundaries or “fracture planes” (by [Matthew Skelton](https://blog.matthewskelton.net/about/)): 1/ Business Domain Bounded Context 2/ Regulatory Compliance 3/ Change Cadence 4/ Team Location 5/ Risk 6/ Performance Isolation 7/ Technology 8/ User Personas.
