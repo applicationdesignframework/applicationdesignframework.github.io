@@ -12,7 +12,7 @@ ADF introduces the following recommendations:
 4. **Create architecture** to address the requirements. Identify components. Describe flows for each story on architecture level. Validate component boundaries using the following “fracture planes” (by [Matthew Skelton](https://blog.matthewskelton.net/about/)): 1/ Business Domain Bounded Context 2/ Regulatory Compliance 3/ Change Cadence 4/ Team Location 5/ Risk 6/ Performance Isolation 7/ Technology 8/ User Personas.
 5. **Write [Architectural Decision Records (ADRs)](https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/appendix.html)** to capture the “why” behind architectural decisions, options considered, trade-offs, and consequences for the solution and each component. ADRs allow to evolve the architecture starting from known design considerations. Consider building proof of concept (POC) to validate the decisions.
 6. **Create repository and pipeline per component** to reduce blast radius and increase delivery performance.
-7. **Group component infrastructure and runtime code by logical units then by code type** to align architecture with implementation. That should ease evolution and maintainability.
+7. **Group component infrastructure and runtime code by logical units** to align architecture with implementation. That should ease evolution and maintainability.
 
 Related frameworks:
 * [AWS Well-Architected Framework](https://aws.amazon.com/architecture/well-architected/) - apply architectural best practices for designing and operating reliable, secure, efficient, cost-effective, and sustainable systems.
