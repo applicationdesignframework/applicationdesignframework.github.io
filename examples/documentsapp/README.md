@@ -88,9 +88,9 @@ We need to create application architecture to address the requirements. The arch
 
 #### Decision
 
-Introduce 4 components: 1/ Documents UI 2/ Documents API 3/ Identity Provider API 4/ Token Vending Machine API. Decouple the Identity Provider API from other components because 1/ both Documents UI and Documents API need to interact with it 2/ it has high risk and change cadence. Decouple Documents UI from Documents API because they have difference change cadence. Decouple Token Vending Machine API from Documents API because it has high risk and different change cadence. Create a Git repository and pipeline for each component to reduce blast radius and increase delivery performance.
+Introduce 4 components: 1/ Documents UI 2/ Documents API 3/ Identity Provider API 4/ Token Vending Machine API. Decouple the Identity Provider API from other components because 1/ both Documents UI and Documents API need to interact with it 2/ it has different risk profile and change cadence. Decouple Documents UI from Documents API because they have difference change cadence. Decouple Token Vending Machine API from Documents API because it has different risk profile and change cadence. Create a Git repository and pipeline for each component to reduce blast radius and increase delivery performance.
 
-![](https://user-images.githubusercontent.com/4362270/227119575-34644264-cb75-43c5-a481-b90ac6228d72.png)
+![](https://user-images.githubusercontent.com/4362270/227508807-156123e1-6278-4448-a50b-b275a498f41c.png)
 
 #### Consequences
 
@@ -121,29 +121,29 @@ aws cognito-idp admin-create-user \
 
 _As a Member, I want to add a document_
 
-When the member clicks on `Add Document` button, the documents UI will prompt for document name, and use it as document ID. When the member clicks `Submit` button, the documents UI should call the documents API to add the document.
+When the Member clicks on `Add Document` button, the Documents UI will prompt for document name, and use it as document ID. When the Member clicks `Submit` button, the Documents UI should call the Documents API to add the document.
 
 _As a Member, I want to see list of my documents and documents shared with me in the documents UI_
 
-When the member browses to the documents UI, the UI should call the documents API to get the list of documents owned by and shared with the member. The documents API should also return metadata that contains owners and sharing permissions. The list of documents should then be displayed.
+When the Member browses to the Documents UI, the UI should call the Documents API to get the list of documents owned by and shared with the Member. The Documents API should also return documents metadata that contains owners and sharing permissions. The list of documents should then be displayed.
 
 _As ExampleCorp Admin, I want to see the list of all ExampleCorp documents_
 
-When the admin browses to the documents UI, the UI should call the documents API to get the list of all ExampleCorp documents. The documents API should also return metadata that contains owners. The list of documents should then be displayed.
+When the Admin browses to the Documents UI, the UI should call the Documents API to get the list of all ExampleCorp documents. The Documents API should also return documents metadata that contains owners. The list of documents should then be displayed.
 
 _As ExampleCorp Member, I want to share a document with another ExampleCorp Member_
 
-When the member wants to share a document, the documents UI should call the documents API to get the list of users of the tenant. When the member selects the user to share the document with and submits, the documents UI should call the documents API with document and sharee details.
+When the Member wants to share a document, the Documents UI should call the Documents API to get the list of ExampleCorp users. When the Member selects the user to share the document with and submits, the Documents UI should call the Documents API with document and sharee details.
 
 #### Consequences
 
-We will need to implement a DNS strategy and a service discovery mechanism so that components can perform redirects and make API calls.
+We should implement a DNS strategy and a service discovery mechanism so that components can perform redirects and make API calls.
 
 ### DNS strategy
 
 #### Context
 
-We needed to decide on DNS strategy that would: 1/ allow each builder to test the full application in their sandbox account 2/ support multiple pre-production and production environments 3/ enable cross-component service discovery without managing configuration files and making network calls to a service registry.
+We need to decide on DNS strategy that would: 1/ allow each builder to test the full application in their sandbox account 2/ support multiple pre-production and production environments 3/ enable cross-component service discovery without managing configuration files and making network calls to a service registry.
 
 #### Decision
 
@@ -198,7 +198,7 @@ TBD
 
 #### Context
 
-We needed to design customer identity and access management solution. The solution should: 1/ allow each builder to test the component in their sandbox account 2/ support multiple pre-production and production environments 3/ enable sign in UI endpoint discovery without managing configuration files and making network calls to a service registry for clients in the same environment (account and Region).
+We need to design customer identity and access management solution. The solution should: 1/ allow each builder to test the component in their sandbox account 2/ support multiple pre-production and production environments 3/ enable sign in UI endpoint discovery without managing configuration files and making network calls to a service registry for clients in the same environment (account and Region).
 
 #### Decision
 
@@ -230,13 +230,13 @@ It’s not possible to implement different configurations for each tenant. See [
 
 #### Context
 
-We need to build a Token Vending Machine (TVM) API that implements IAM session broker to vend temporary credentials. Services’ runtime code should not have any access to data at deployment time. The runtime code should call TVM API to get temporary scoped credentials for access to data. This approach should improve security and make audits easier. We still want services to define their own roles and policies to avoid bottlenecks in development. The policies should use `${aws:PrincipalTag/KEY}` to scope access. Services should be able to control access scope based on the ID token claims of the authenticated user.
+We need to build a Token Vending Machine API (TVM API) that implements IAM session broker to vend temporary credentials. Services’ runtime code should not have any access to data at deployment time. The runtime code should call TVM API to get temporary scoped credentials for access to data. This approach should improve security and make audits easier. We still want services to define their own roles and policies to avoid bottlenecks in development. The policies should use `${aws:PrincipalTag/KEY}` to scope access. Services should be able to control access scope based on the ID token claims of the authenticated user.
 
 #### Decision
 
-TVM API should vend temporary credentials for service access role. It should tag the session based on predefined ID token claim value of the authenticated user to implement access scoping. Services should allow TVM API Service Principal role to assume the service access role.
+The TVM API should vend temporary credentials for a service access role. It should tag the role session based on predefined ID token claim value of the authenticated user to implement access scoping. Services should allow the TVM API Service Principal role to assume the service access role.
 
-Services should register with TVM API. For initial implementation, the TVM API should trust any role in the same account to register a service. The TVM API should authenticate the caller using IAM, authorize the request if the caller from the same account, and use the caller role name (e.g. `DocumentsAPI`) as the service principal role name for registration. 
+Services should register with the TVM API before asking for temporary credentials. For initial implementation, the TVM API should trust any role in the same account to register a service. The TVM API should authenticate the caller using AWS Identity and Access Management (AWS IAM), authorize the request if the caller from the same account, and use the caller role name (e.g. `DocumentsAPI`) as the service principal role name for registration. 
 
 Services should provide the following information during registration:
 
@@ -268,7 +268,7 @@ Use Lambda function and [AWS Lambda Powertools for Python](https://awslabs.githu
 
 _Access Metadata_
 
-Use Amazon DynamoDB. Create a `AccessMetadata` DynamoDB table. The table should store the registered access metadata.
+Use Amazon DynamoDB. Create a `AccessMetadata` DynamoDB table. The table should store the services access metadata.
 
 Data model (created using [NoSQL WorkBench for DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/workbench.html)):
 
@@ -326,15 +326,12 @@ identity_provider_api/
 _Token Vending Machine API_
 ```
 token_vending_machine_api/
-  authorizer/
-    runtime/
-      <custom code>
   iam_session_broker/
     runtime/
       <custom code files>
   component.py 
     TokenVendingMachineAPI (Stack construct) 
-      Gateway (API Gateway construct), Authorizer (Lambda construct), IAMSessionBroker (Lambda construct), AccessMetadata (DynamoDB construct)
+      Gateway (API Gateway construct), IAMSessionBroker (Lambda construct), AccessMetadata (DynamoDB construct)
 ```
 
 ## Backlog
