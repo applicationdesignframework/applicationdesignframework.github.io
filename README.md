@@ -14,6 +14,9 @@ ADF introduces the following recommendations along with related personas:
 6. **Create repository and pipeline per component [Engineering]** to reduce blast radius and increase delivery performance.
 7. **Group component infrastructure and runtime code by logical units [Engineering]** to align architecture with implementation. That should ease evolution and maintainability.
 
+Examples:
+* [DocumentsApp](examples/documentsapp/README.md)
+
 Related frameworks:
 * [AWS Well-Architected Framework](https://aws.amazon.com/architecture/well-architected/) - apply architectural best practices for designing and operating reliable, secure, efficient, cost-effective, and sustainable systems.
 * [Operational Readiness Review](https://docs.aws.amazon.com/wellarchitected/latest/operational-readiness-reviews/wa-operational-readiness-reviews.html) - ensure a consistent review of operational readiness, with a specific focus on eliminating known, common causes of impact
