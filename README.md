@@ -21,6 +21,9 @@ ADF introduces the following recommendations along with related personas:
 ## Examples
 * [DocumentsApp](examples/documentsapp/README.md)
 
+## Templates
+* [AnyProduct](templates/anyproduct/README.md)
+
 ## Related frameworks
 * [AWS Well-Architected Framework](https://aws.amazon.com/architecture/well-architected/) - apply architectural best practices for designing and operating reliable, secure, efficient, cost-effective, and sustainable systems.
 * [Operational Readiness Review](https://docs.aws.amazon.com/wellarchitected/latest/operational-readiness-reviews/wa-operational-readiness-reviews.html) - ensure a consistent review of operational readiness, with a specific focus on eliminating known, common causes of impact
