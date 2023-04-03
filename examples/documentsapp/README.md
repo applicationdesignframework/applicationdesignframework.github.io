@@ -288,11 +288,7 @@ Python: `3.9.11`
 
 AWS CDK Toolkit (CLI) and AWS CDK Construct Library: `2.69.0`
 
-### Project scaffolding
-
-Template: https://github.com/aws-samples/aws-cdk-project-structure-python
-
-Application name: `DocumentsApp`
+Project template: https://github.com/aws-samples/aws-cdk-project-structure-python
 
 ### Git repositories
 
@@ -304,7 +300,7 @@ Identity Provider API: `documentsapp-identity-provider-api`
 
 Token Vending Machine API: `documentsapp-token-vending-machine-api`
 
-### AWS CDK project structure
+### Project structure
 
 _Documents UI_
 

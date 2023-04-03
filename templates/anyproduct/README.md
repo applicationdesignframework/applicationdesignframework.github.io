@@ -44,12 +44,6 @@ We need to define flows between the application components.
 
 ### Toolchain
 
-### Project scaffolding
-
-Template: LOCATION
-
-Application name: NAME
-
 ### Git repositories
 
 ### Project structure
