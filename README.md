@@ -13,16 +13,16 @@ ADF introduces the following recommendations along with related personas:
 1. **Work backwards [Sales, Marketing, Product]** to clarify the problem and the solution. Write use cases or [press release/frequently asked questions (PR/FAQ)](https://productstrategy.co/working-backwards-the-amazon-prfaq-for-product-innovation/) or [pitch](https://basecamp.com/shapeup/1.5-chapter-06).
 2. **Write stories [Product]** to start the conversation about requirements.
 3. **Capture requirements [Product, Engineering]** to guide architectural decisions. Describe flows for each story to identify requirements. Consider functional and non-functional requirements.
-4. **Create architecture [Product, Engineering]** to address the requirements. Identify components. Describe flows for each story on architecture level. Validate component boundaries using the following “fracture planes” (by [Matthew Skelton](https://blog.matthewskelton.net/about/)): 1/ Business Domain Bounded Context 2/ Regulatory Compliance 3/ Change Cadence 4/ Team Location 5/ Risk 6/ Performance Isolation 7/ Technology 8/ User Personas.
+4. **Create architecture [Product, Engineering]** to address the requirements. Describe flows for each story on architecture level. Identify components. Validate component boundaries using the following “fracture planes” (by [Matthew Skelton](https://blog.matthewskelton.net/about/)): 1/ Business Domain Bounded Context 2/ Regulatory Compliance 3/ Change Cadence 4/ Team Location 5/ Risk 6/ Performance Isolation 7/ Technology 8/ User Personas.
 5. **Write [Architectural Decision Records (ADRs)](https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/appendix.html) [Engineering]** to capture the “why” behind architectural decisions, options considered, trade-offs, and consequences for the solution and each component. ADRs allow to evolve the architecture starting from known design considerations. Consider building proof of concept (POC) to validate the decisions.
 6. **Create repository and pipeline per component [Engineering]** to reduce blast radius and increase delivery performance.
 7. **Group component infrastructure and runtime code by logical units [Engineering]** to align architecture with implementation. That should ease evolution and maintainability.
 
 ## Examples
-* [DocumentsApp](examples/documentsapp/README.md)
+* [IAM Session Broker](examples/iam-session-broker/README.md)
 
 ## Templates
-* [AnyProduct](templates/anyproduct/README.md)
+* [Application](templates/application/README.md)
 
 ## Related frameworks
 * [AWS Well-Architected Framework](https://aws.amazon.com/architecture/well-architected/) - apply architectural best practices for designing and operating reliable, secure, efficient, cost-effective, and sustainable systems.
