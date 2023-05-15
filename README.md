@@ -4,7 +4,12 @@ A framework to help align business with technology, minimize rework, and design 
 ## Context
 Companies build, maintain and evolve applications over time. They need to do so safely (reduce blast radius) and effectively (build on existing knowledge) to reduce risk and increase velocity. ADF aims to help companies achieve these goals.
 
-ADF uses the following [definitions](https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html) from the AWS Well-Architected Framework (generalized):
+Application definition ([Martin Fowler](https://martinfowler.com/bliki/ApplicationBoundary.html)):
+* A **body of code** that's seen by developers as a single unit
+* A **group of functionality** that business customers see as a single unit
+* An **initiative** that those with the money see as a single budget
+
+Component and architecture definitions ([AWS Well-Architected Framework](https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html)):
 * A **component** is the code, configuration, and resources that together deliver against a requirement. A component is often the unit of technical ownership, and is decoupled from other components.
 * An **architecture** describes how components work together. How components communicate and interact is often the focus of architecture diagrams.
 
