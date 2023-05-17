@@ -1,10 +1,8 @@
-## Use case
+## Use cases
 
-## Stories
+## Stories and flows
 
 ## Requirements
-
-### Flows
 
 ### Functional
 
@@ -12,16 +10,25 @@
 
 ## Architecture
 
-### Architectural Decision Record - Flows and components
+### Applications
 **Context**
 
-We need to define components and describe how they communicate and interact based on the [Flows](#flows)
+We need to describe [stories and flows](#stories-and-flows) on architecture level and identify applications to build.
 
 **Decision**
 
 **Consequences**
 
-### Architectural Decision Record - Title
+### <Application> Components
+**Context**
+
+We need to identify <Application> components.
+
+**Decision**
+
+**Consequences**
+
+### <Title>
 **Context**
 
 **Decision**
@@ -34,6 +41,6 @@ We need to define components and describe how they communicate and interact base
 
 ### Git repositories
 
-### Project structure
+### Code structure
 
 ## Backlog
