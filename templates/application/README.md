@@ -13,7 +13,7 @@
 ### Applications
 **Context**
 
-We need to describe [stories and flows](#stories-and-flows) on architecture level and identify applications to build.
+We need to identify applications to build by describing [stories and flows](#stories-and-flows) on architecture level.
 
 **Decision**
 

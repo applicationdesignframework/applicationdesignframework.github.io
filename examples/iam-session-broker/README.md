@@ -41,11 +41,9 @@ A multi-tenant SaaS composes multiple applications. Applications use a shared IA
 
 **Context**
 
-We need to describe [stories and flows](#stories-and-flows) on architecture level and identify applications to build.
+We need to identify applications to build by describing [stories and flows](#stories-and-flows) on architecture level.
 
-**Decision**
-
-Scope the user access to their tenant’s boundary
+Scope the user access to their tenant’s boundary:
 
 ![Scope the user access to their tenant’s boundary](https://user-images.githubusercontent.com/4362270/231122057-cfdbab53-ebc2-4344-8348-2b77c6e43e6b.jpg)
 
@@ -54,6 +52,8 @@ Scope the user access to their tenant’s boundary
 3. Application calls IAM Session Broker to acquire Yellow-scoped temporary security credentials
 4. IAM Session Broker verifies the JWT and returns Yellow-scoped temporary security credentials
 5. Application returns Yellow data to the user
+
+**Decision**
 
 Create [IAM Session Broker](#iam-session-broker-api) application that returns tenant-scoped temporary security credentials based on JWT claims for registered applications. IAM Session Broker should have a dedicated Git repository and a pipeline to reduce blast radius and increase delivery performance. Identity Provider application is out of scope for this document.
 
