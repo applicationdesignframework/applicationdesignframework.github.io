@@ -8,11 +8,13 @@ AnyCompany product team wants to build a DocuStar product that allows enterprise
 
 ### Architecture
 
-![design-1-architecture](https://github.com/alexpulver/adf/assets/4362270/8f699306-92d4-40a7-8b23-5b20895d99d6)
+![design-1-architecture](https://github.com/alexpulver/adf/assets/4362270/b32e2b8e-fa0f-4544-b9ea-45cbbc948d34)
 
 ### Deployment
 
-<img src="https://github.com/alexpulver/adf/assets/4362270/818f5ef1-f4f4-47b3-8e94-ed2fa25670cc" width="35%">
+<p align="center">
+  <img src="https://github.com/alexpulver/adf/assets/4362270/fafe4a87-0853-4d6d-b4cb-54971dc367e8" width="35%">
+</p>
 
 ## Deployment evolution
 
@@ -20,19 +22,23 @@ There were several occasions where code changes inadvertently deleted data resou
 
 ### Architecture
 
-![design-2-architecture](https://github.com/alexpulver/adf/assets/4362270/794f40b2-c948-479f-9b37-08cc5b9dbfa7)
+![design-2-architecture](https://github.com/alexpulver/adf/assets/4362270/d9ff0a12-927f-44a8-8702-47d65dfd6077)
 
 ### Deployment
 
-<img src="https://github.com/alexpulver/adf/assets/4362270/e2b56bda-4eff-44ed-bc0b-38046d968d11" width="35%">
+<p align="center">
+  <img src="https://github.com/alexpulver/adf/assets/4362270/a213c7c0-cc63-462f-978a-341dbd43e331" width="35%">
+</p>
 
 ## Ownership evolution
 As the company grew, it established more teams and also decided to create an internal platform (DocuGuard) for the shared user management and IAM session broker services. There was now a dedicated team for each of the components (documents UI, documents service, user management service, IAM session broker service). The company decided to create a dedicated application for each of these components and assign ownership to the respective teams.
 
 ### Architecture
 
-![design-3-architecture](https://github.com/alexpulver/adf/assets/4362270/542655ff-5144-4824-bfbd-edcdad55de1f)
+![design-3-architecture](https://github.com/alexpulver/adf/assets/4362270/5460adff-62b9-4a01-af4d-7ae03f3b51e0)
 
 ### Deployment
 
-<img src="https://github.com/alexpulver/adf/assets/4362270/528d32dc-68f0-4a9d-98b0-b28eee0cd770" width="65%">
+<p align="center">
+  <img src="https://github.com/alexpulver/adf/assets/4362270/b93a1bc6-311c-4229-a68a-b89530e86d7d" width="65%">
+</p>
