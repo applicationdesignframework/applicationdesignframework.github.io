@@ -21,7 +21,7 @@ Architecture <sup>[3]</sup>:
 ## Mindset
 > Application is an ownership boundary. It includes metadata, toolchain, and components.
 
-> Application boundary should align with organization and software evolution.
+> Application boundary should evolve with organizational and software changes.
 
 ## Recommendations
 ADF introduces the following recommendations along with related personas:
