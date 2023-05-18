@@ -142,8 +142,8 @@ app.py
   Components("Soteria-Components-Sandbox")
   Toolchain("Soteria-Toolchain-Sandbox")
   
-  Metadata("Soteria-Metadata-Production")
-  Toolchain("Soteria-Toolchain-Production")
+  Metadata("Soteria-Metadata-Management")
+  Toolchain("Soteria-Toolchain-Management")
 ```
 
 ## Design evolution
@@ -244,8 +244,8 @@ app.py
   Components("Aphrodite-Components-Sandbox")
   Toolchain("Aphrodite-Toolchain-Sandbox")
   
-  Metadata("Aphrodite-Metadata-Production")
-  Toolchain("Aphrodite-Toolchain-Production")
+  Metadata("Aphrodite-Metadata-Management")
+  Toolchain("Aphrodite-Toolchain-Management")
 ```
 
 Themis and Olympus follow a similar approach to Aphrodite, so left out for brevity.
