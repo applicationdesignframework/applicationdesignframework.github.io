@@ -1,4 +1,4 @@
-# Application evolution 2
+# Deployment strategy and application boundary evolution
 
 This example describes changes in deployment and ownership as part of company growth. It doesn't go into details of stories, requirements, architecture, architectural decision records and code structure.
 

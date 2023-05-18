@@ -1,6 +1,6 @@
-# Application evolution 1
+# End-to-end design process and application boundary evolution
 
-This example describes changes in code structure as part of company growth. It doesn't go into details of stories, requirements, architecture and architectural decision records.
+This example describes design phases in high-level and how application boundary changes as part of company growth. It doesn't go into details of stories, requirements, architecture and architectural decision records.
 
 ## Initial design
 

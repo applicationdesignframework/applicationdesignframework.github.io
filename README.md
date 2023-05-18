@@ -35,8 +35,8 @@ ADF introduces the following recommendations along with related personas:
 
 ## Examples
 * [IAM Session Broker](examples/iam-session-broker/README.md)
-* [Application evolution 1](examples/application-evolution-1/README.md)
-* [Application evolution 2](examples/application-evolution-2/README.md)
+* [End-to-end design process and application boundary evolution](examples/application-evolution-1/README.md)
+* [Deployment strategy and application boundary evolution](examples/application-evolution-2/README.md)
 
 ## Templates
 * [Application](templates/application/README.md)
