@@ -18,6 +18,11 @@ Component (Martin Fowler - [source](https://martinfowler.com/bliki/SoftwareCompo
 Architecture (AWS Well-Architected Framework - [source](https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html)):
 * An **architecture** describes how components work together. How components communicate and interact is often the focus of architecture diagrams.
 
+## Mindset
+> Application is an ownership boundary. It includes metadata, toolchain, and components.
+
+> It is the application scope that should change with evolution, not the component.
+
 ## Recommendations
 ADF introduces the following recommendations along with related personas:
 1. **Work backwards [Sales, Marketing, Product]** to clarify problem and solution. Capture use cases. Consider writing [press release/frequently asked questions (PR/FAQ)](https://productstrategy.co/working-backwards-the-amazon-prfaq-for-product-innovation/) or [pitch](https://basecamp.com/shapeup/1.5-chapter-06).
@@ -30,6 +35,8 @@ ADF introduces the following recommendations along with related personas:
 
 ## Examples
 * [IAM Session Broker](examples/iam-session-broker/README.md)
+* [Application evolution 1](examples/application-evolution-1/README.md)
+* [Application evolution 2](examples/application-evolution-2/README.md)
 
 ## Templates
 * [Application](templates/application/README.md)
