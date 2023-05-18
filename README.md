@@ -13,7 +13,7 @@ Application (Martin Fowler - [source](https://martinfowler.com/bliki/Application
 
 Component (Martin Fowler - [source](https://martinfowler.com/bliki/SoftwareComponent.html), AWS Well-Architected Framework - [source](https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html)):
 * Software **components** are things that are independently replaceable and upgradeable.
-* A **component** is the code, configuration, and resources that together deliver against a requirement. A component is often the unit of technical ownership, and is decoupled from other components.
+* A **component** is the code, configuration, and resources that together deliver against a requirement. A component is decoupled from other components.
 
 Architecture (AWS Well-Architected Framework - [source](https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html)):
 * An **architecture** describes how components work together. How components communicate and interact is often the focus of architecture diagrams.
