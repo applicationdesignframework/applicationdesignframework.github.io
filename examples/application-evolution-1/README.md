@@ -1,6 +1,6 @@
 # Application evolution 1
 
-This example describes changes in architecture and code structure as part of company growth. It doesn't go into details of stories, requirements and architectural decision records.
+This example describes changes in code structure as part of company growth. It doesn't go into details of stories, requirements, architecture and architectural decision records.
 
 ## Initial design
 
@@ -51,6 +51,7 @@ _Soteria_
 ### Code structure
 
 _Soteria_
+
 Engineering team decided to create a single code repository for the Soteria application. The implementation includes components (UI, service, repository, and monitoring), toolchain (deployment pipeline and pull request build), and metadata (resources and attributes). Components, toolchain, and metadata deploy as a stack each. Components and toolchain resources are associated with the metadata.
 
 Engineering team decided to create the following environments: 1/ per-builder sandbox environment 2/ management environment (toolchain and metadata) 3/ alpha, beta, gamma, and production environments (components). Toolchain deploys components to the alpha, beta, gamma and production environments.
@@ -191,6 +192,7 @@ _Olympus_
 ### Code structure
 
 _Aphrodite_
+
 Engineering team decided to create a single code repository for the Aphrodite application. The implementation includes components (UI and monitoring), toolchain (deployment pipeline and pull request build), and metadata (resources and attributes). Components, toolchain, and metadata deploy as a stack each. Components and toolchain resources are associated with the metadata.
 
 Engineering team decided to create the following environments: 1/ per-builder sandbox environment 2/ management environment (toolchain and metadata) 3/ alpha, beta, gamma, and production environments (components). Toolchain deploys components to the alpha, beta, gamma and production environments.
