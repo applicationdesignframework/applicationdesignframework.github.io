@@ -20,8 +20,8 @@ Architecture (AWS Well-Architected Framework - [source](https://docs.aws.amazon.
 
 ## Mindset
 > Application is an ownership boundary. It includes metadata, toolchain, and components.
-
-> It is the application scope that should change with evolution, not the component.
+> 
+> Application boundary should align with organization and software evolution.
 
 ## Recommendations
 ADF introduces the following recommendations along with related personas:
