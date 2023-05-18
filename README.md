@@ -1,5 +1,5 @@
 # Application Design Framework (ADF)
-A framework to help align business with technology, minimize rework, and design applications for maintainability and evolution
+Align business with technology, minimize rework, ease evolution.
 
 ## Context
 Companies build, maintain and evolve applications over time. They need to do so safely (reduce blast radius) and effectively (build on existing knowledge) to reduce risk and increase velocity. ADF aims to help companies achieve these goals.
