@@ -123,16 +123,16 @@ We need to decide on a service discovery strategy to allow applications discover
 Use DNS for service discovery. Use the following naming convention for domain hierarchy:
 
 ```
-<component>.<region>.<environment>.<application>.<top-level domain>
+<application>.<region>.<environment>.<product>.<top-level domain>
 ```
 
 Example:
 
 ```
-api.eu-west-1.gamma.iam-session-broker.example.com
+iam-session-broker.eu-west-1.gamma.saas-platform.example.com
 ```
 
-Delegate the application sub-domain to a dedicated AWS account so that each application can manage their DNS zones. Using the above approach, applications can construct the IAM Session Broker API endpoint at deployment time using environment name and Region values.
+Delegate the product sub-domain to a dedicated AWS account so that each product team can manage DNS zones for their applications. Using the above approach, applications can construct the IAM Session Broker API endpoint at deployment time.
 
 **Consequences**
 
