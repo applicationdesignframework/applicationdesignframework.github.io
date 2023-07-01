@@ -18,7 +18,7 @@ Component <sup>[4]</sup>:
 * Software **components** are things that are independently replaceable and upgradeable.
 
 ## Mindset
-> Application is an ownership boundary. It includes metadata, toolchain, and components.
+> Application is an ownership boundary.
 
 > Application boundary should evolve with organizational and software changes.
 
