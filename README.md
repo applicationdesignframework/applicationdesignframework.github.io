@@ -6,7 +6,7 @@ Building products and services requires companies to be responsive to market sig
 
 ## Definitions
 
-Application <sup>[1]</sup>:
+Application boundary <sup>[1]</sup>:
 * A **body of code** that's seen by developers as a single unit
 * A **group of functionality** that business customers see as a single unit
 * An **initiative** that those with the money see as a single budget
