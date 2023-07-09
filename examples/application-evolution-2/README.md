@@ -1,44 +1,37 @@
-# Deployment strategy and application boundary evolution
+# Application boundary and deployment model evolution
 
-This example describes changes in deployment and ownership as part of company growth. It doesn't go into details of stories, requirements, architecture, architectural decision records and code structure.
+This example describes application boundary and deployment model evolution as part of company growth. It doesn't go into details of stories, requirements, architecture, architectural decision records and code structure.
 
 ## Initial design
 
-AnyCompany product team wants to build a DocuStar product that allows enterprises to store, view, edit, and share documents. Engineering team decided to create a single Soteria application with 4 components: 1/ documents UI 2/ documents service 3/ user management service 4/ IAM session broker service. Soteria application also includes toolchain (deployment pipeline and pull request build) and metadata (resources and attributes). Components, toolchain, and metadata deploy as a stack each. Components and toolchain resources are associated with the metadata.
+Company wanted to build a DocuStar product that allows customers to store, view, edit, and share documents. Engineering team decided to create a DocuStar application that includes Application (metadata), Toolchain and Service components. Toolchain includes Deployment Pipeline and Pull Request Build components. Service includes Documents Console, Documents Store, User Management, and Credentials Broker components.
 
-### Architecture
+Engineering decided to create a single source code repository for the application. Application (metadata) and Toolchain deploy as a stack each. Service deploys as multiple stacks: 1/ Documents (Documents Console and Documents Store) 2/ User Management 3/ Credentials Broker.
 
-![design-1-architecture](https://github.com/alexpulver/adf/assets/4362270/b32e2b8e-fa0f-4544-b9ea-45cbbc948d34)
+Flow:
 
-### Deployment
+![](https://github.com/alexpulver/adf/assets/4362270/759a224d-04d6-4a0b-bc13-d55258840465)
+
+Stacks:
 
 <p align="center">
-  <img src="https://github.com/alexpulver/adf/assets/4362270/fafe4a87-0853-4d6d-b4cb-54971dc367e8" width="35%">
+  <img src="https://github.com/alexpulver/adf/assets/4362270/c6201ec3-33c7-43a4-8dd8-a4cffbfb7584" width="35%">
 </p>
 
-## Deployment evolution
+## Design evolution
 
-There were several occasions where code changes inadvertently deleted data resources (e.g. documents repository). The team had snapshots, but it took time to restore. The engineering team decided to split the components into discrete stacks and add termination protection for the sensitive resources to decrease blast radius.
+As DocuStar grew in functionality, the company increased the team working on the product. To maintain fast flow, the company decided to split DocuStar into multiple products and applications, with each application having a dedicated team:
+* Public DocuStar product with Documents Console and Documents Store applications
+* Internal DocuAuth product with User Management and Credentials Broker applications
 
-### Architecture
+Engineering decided to create a source code repository for each application. Now, Application (metadata), Toolchain, and Service deploy as a stack each.
 
-![design-2-architecture](https://github.com/alexpulver/adf/assets/4362270/d9ff0a12-927f-44a8-8702-47d65dfd6077)
+Flow:
 
-### Deployment
+![](https://github.com/alexpulver/adf/assets/4362270/f53e5aa2-901e-4209-aa45-0382736a1f14)
 
-<p align="center">
-  <img src="https://github.com/alexpulver/adf/assets/4362270/a213c7c0-cc63-462f-978a-341dbd43e331" width="35%">
-</p>
-
-## Ownership evolution
-As the company grew, it established more teams and also decided to create an internal platform (DocuGuard) for the shared user management and IAM session broker services. There was now a dedicated team for each of the components (documents UI, documents service, user management service, IAM session broker service). The company decided to create a dedicated application for each of these components and assign ownership to the respective teams.
-
-### Architecture
-
-![design-3-architecture](https://github.com/alexpulver/adf/assets/4362270/5460adff-62b9-4a01-af4d-7ae03f3b51e0)
-
-### Deployment
+Stacks:
 
 <p align="center">
-  <img src="https://github.com/alexpulver/adf/assets/4362270/b93a1bc6-311c-4229-a68a-b89530e86d7d" width="65%">
+  <img src="https://github.com/alexpulver/adf/assets/4362270/49e77e5b-1ccd-4465-a06e-b2e53956ff00" width="35%">
 </p>
