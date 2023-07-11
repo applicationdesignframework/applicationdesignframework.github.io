@@ -4,9 +4,9 @@ This example describes application boundary and deployment model evolution as pa
 
 ## Initial design
 
-Company wanted to build a DocuStar product that allows customers to store, view, edit, and share documents. Engineering team decided to create a DocuStar application that includes Application (metadata), Toolchain and Service components. Toolchain includes Deployment Pipeline and Pull Request Build components. Service includes Documents Console, Documents Store, User Management, and Credentials Broker components.
+Company wanted to build a DocuStar product that allows customers to store, view, edit, and share documents. Engineering team decided to create a DocuStar application that includes Toolchain and Service components. Toolchain includes Deployment Pipeline and Pull Request Build components. Service includes Documents Console, Documents Store, User Management, and Credentials Broker components.
 
-Engineering decided to create a single source code repository for the application. Application (metadata) and Toolchain resources deploy as a stack each. Service resources deploy as multiple stacks: 1/ Documents (Documents Console and Documents Store) 2/ User Management 3/ Credentials Broker.
+Engineering decided to create a single source code repository for the DocuStar application. Application (metadata) and Toolchain resources deploy as a stack each. Service resources deploy as multiple stacks: 1/ Documents (Documents Console and Documents Store) 2/ User Management 3/ Credentials Broker.
 
 Flow:
 
@@ -24,7 +24,7 @@ As DocuStar grew in functionality, the company increased the team working on the
 * Public DocuStar product with Documents Console and Documents Store applications
 * Internal DocuAuth product with User Management and Credentials Broker applications
 
-Engineering decided to create a source code repository for each application. Now, Application (metadata), Toolchain, and Service deploy as a stack each.
+Engineering decided to create a source code repository for each application. Now, Application (metadata), Toolchain, and Service resources deploy as a stack each.
 
 Flow:
 
