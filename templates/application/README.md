@@ -10,25 +10,11 @@
 
 ## Architecture
 
-### Applications
-**Context**
+### Stories and flows
 
-We need to identify applications to build by describing [stories and flows](#stories-and-flows) on architecture level.
+### Architectural Decision Records (ADRs)
 
-**Decision**
-
-**Consequences**
-
-### <Application> Components
-**Context**
-
-We need to identify <Application> components.
-
-**Decision**
-
-**Consequences**
-
-### <Title>
+#### <Title>
 **Context**
 
 **Decision**
@@ -39,7 +25,7 @@ We need to identify <Application> components.
 
 ### Toolchain
 
-### Git repositories
+### Git repository(ies)
 
 ### Code structure
 
