@@ -2,7 +2,9 @@
 Align business with technology, minimize rework, ease evolution.
 
 ## Context
-Building products and services requires companies to be responsive to market signals and demand. Some companies struggle with business agility due to misalignment between business and technology. This misalignment results in significant rework and a difficult to evolve architecture. ADF aims to address these challenges.
+Building products and services requires companies to be responsive to market signals and demand. Some companies struggle with business agility due to misalignment between business and technology. This misalignment results in significant rework and a difficult to evolve architecture. 
+
+ADF aims to address these challenges by integrating product engineering steps into a single flow.
 
 ## Definitions
 
