@@ -10,11 +10,16 @@
 
 ## Architecture
 
-### Stories and flows
+### Application boundaries
+**Context**
 
-### Architectural Decision Records (ADRs)
+We need to identify application boundaries by describing stories and flows on architecture level.
 
-#### <Title>
+**Decision**
+
+**Consequences**
+
+### Title
 **Context**
 
 **Decision**
@@ -22,8 +27,6 @@
 **Consequences**
 
 ## Implementation
-
-### Toolchain
 
 ### Git repository(ies)
 
