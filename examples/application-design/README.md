@@ -16,13 +16,25 @@ First story is "As a developer, I want to launch an instance". Flow describes de
 
 ## Architecture
 
-### Stories and flows
+### Application boundaries
 
-Describing story and flow on technical level helps to establish application boundaries. The decision is to create two applications: _EC2 Instances Console_ and _EC2 Instances Control Plane_.
+**Context**
+
+We need to identify application boundaries by describing stories and flows on architecture level.
+
+**Decision**
+
+The decision is to create two applications: _EC2 Instances Console_ and _EC2 Instances Control Plane_.
 
 ![image](https://github.com/alexpulver/adf/assets/4362270/2108fb96-a317-4498-8db5-8ba7005fc17a)
 
-### Architectural decision records (ADRs)
+### EC2 Instances Console components
+
+**Context**
+
+We need to identify EC2 Instances Console components.
+
+**Decision**
 
 _EC2 Instances Console_ application includes Toolchain and Service components. Toolchain includes Deployment Pipeline and Pull Request Build components. Service includes Network, Ingress, Compute, WebApp, Database and Monitoring components. Components use infrastructure services and runtime code to provide functionality. Application (metadata), Toolchain and Service resources deploy as a stack each.
 
