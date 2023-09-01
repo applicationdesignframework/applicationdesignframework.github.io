@@ -10,12 +10,14 @@ Engineering decided to create a single source code repository for the DocuStar a
 
 Flow:
 
-![](https://github.com/alexpulver/adf/assets/4362270/759a224d-04d6-4a0b-bc13-d55258840465)
+<p align="center">
+  <img src="https://github.com/alexpulver/adf/assets/4362270/759a224d-04d6-4a0b-bc13-d55258840465">
+</p>
 
 Stacks:
 
 <p align="center">
-  <img src="https://github.com/alexpulver/adf/assets/4362270/c6201ec3-33c7-43a4-8dd8-a4cffbfb7584" width="35%">
+  <img src="https://github.com/alexpulver/adf/assets/4362270/c6201ec3-33c7-43a4-8dd8-a4cffbfb7584" width="30%">
 </p>
 
 ## Design evolution
@@ -28,10 +30,12 @@ Engineering decided to create a source code repository for each application. Now
 
 Flow:
 
-![](https://github.com/alexpulver/adf/assets/4362270/f53e5aa2-901e-4209-aa45-0382736a1f14)
+<p align="center">
+  <img src="https://github.com/alexpulver/adf/assets/4362270/f53e5aa2-901e-4209-aa45-0382736a1f14">
+</p>
 
 Stacks:
 
 <p align="center">
-  <img src="https://github.com/alexpulver/adf/assets/4362270/49e77e5b-1ccd-4465-a06e-b2e53956ff00" width="35%">
+  <img src="https://github.com/alexpulver/adf/assets/4362270/49e77e5b-1ccd-4465-a06e-b2e53956ff00" width="50%">
 </p>
