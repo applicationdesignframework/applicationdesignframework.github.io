@@ -31,7 +31,7 @@ ADF introduces the following recommendations along with related personas:
 3. **Define requirements [Product, Engineering]** to guide architectural decisions. Consider functional and non-functional requirements.
 4. **Define architecture [Product, Engineering]** to address requirements. Describe stories and flows on architecture level. Identify applications. Validate application boundaries using the following “fracture planes” <sup>[5]</sup>: 1/ Profit and Loss Group 2/ Business Domain Bounded Context 3/ Regulatory Compliance 4/ Change Cadence 5/ Team Location 6/ Risk 7/ Performance Isolation 8/ Technology 9/ User Personas. Capture [Architectural Decision Records (ADRs)](https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/appendix.html) including “why” behind decisions, options considered, trade-offs, and consequences. ADRs allow to evolve the architecture starting from known design considerations. Consider building proof of concept (POC) to validate the decisions.
 5. **Create one or more repositories and a single pipeline per application [Engineering]** to reduce blast radius and increase delivery performance.
-6. **Organize application code and resources configuration code per application component [Engineering]** to ease evolution and maintenance.
+6. **Organize architecture and domain logic code per application component [Engineering]** to ease evolution and maintenance.
 
 ## Examples
 * [High-level application design from use case to code](examples/application-design/README.md)
