@@ -1,12 +1,12 @@
 # Application boundary and deployment model evolution
 
-This example describes application boundary and deployment model evolution as part of company growth. It doesn't go into details of stories, requirements, architecture, architectural decision records and code structure.
+This example describes application boundary and deployment model evolution as part of company growth. It doesn't go into details of stories and flows, requirements, architecture and code.
 
 ## Initial design
 
-Company wanted to build a DocuStar product that allows customers to store, view, edit, and share documents. Engineering team decided to create a DocuStar application that includes Toolchain and Service components. Toolchain includes Deployment Pipeline and Pull Request Build components. Service includes Documents Console, Documents Store, User Management, and Credentials Broker components.
+Company wanted to build a DocuStar product that allows customers to store, view, edit, and share documents. Engineering team decided to create a DocuStar application that contains Toolchain and Service components, each deploying as stack. Toolchain stack contains Deployment Pipeline and Pull Request Build components. Service stack includes Documents Console, Documents Store, User Management, and Credentials Broker components.
 
-Engineering decided to create a single source code repository for the DocuStar application. Application (metadata) and Toolchain resources deploy as a stack each. Service resources deploy as multiple stacks: 1/ Documents (Documents Console and Documents Store) 2/ User Management 3/ Credentials Broker.
+Engineering decided to create a single code repository for the DocuStar application. Application (metadata) and Toolchain resources deploy as a stack each. Service resources deploy as multiple stacks: 1/ Documents (Documents Console and Documents Store) 2/ User Management 3/ Credentials Broker.
 
 Flow:
 

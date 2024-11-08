@@ -1,6 +1,6 @@
 ## Use cases
 
-A multi-tenant SaaS composes multiple applications. Applications use a shared IAM Session Broker library to scope user access to their tenant’s boundary. SaaS provider wants to build a shared IAM Session Broker application instead to reduce operational overhead and improve security posture. The application should initially support the ABAC authorization strategy.
+A multi-tenant SaaS offering composes multiple applications. Applications use a shared IAM Session Broker library to scope user access to their tenant’s boundary. SaaS provider wants to build a shared IAM Session Broker application instead to reduce operational overhead and improve security posture. The application should initially support the ABAC authorization strategy.
 
 ## Stories and flows
 
@@ -12,7 +12,7 @@ A multi-tenant SaaS composes multiple applications. Applications use a shared IA
 
 ## Requirements
 
-### Functional
+### Business
 
 * Require the applications to use ABAC with `${aws:PrincipalTag/`*`key`*`}` variable in policies for scoping access
 * Require the applications to register and provide the following access metadata:
@@ -27,7 +27,7 @@ A multi-tenant SaaS composes multiple applications. Applications use a shared IA
 * Validate the JWT by public keys in the registered application JWK Set URL
 * Return the scoped temporary security credentials by assuming the access role. Tag the session with the registered session tag key and JWT claim name value as the session tag key value.
 
-### Non-functional
+### Technical
 
 * Generate SDKs for multiple programming languages from service specification
 * Collect audit logs for security and compliance
@@ -37,11 +37,11 @@ A multi-tenant SaaS composes multiple applications. Applications use a shared IA
 
 ## Architecture
 
-### Applications
+### Application boundaries
 
 **Context**
 
-We need to identify applications to build by describing [stories and flows](#stories-and-flows) on architecture level.
+We need to identify application boundaries by describing stories and flows on technical level.
 
 Scope the user access to their tenant’s boundary:
 
@@ -55,7 +55,7 @@ Scope the user access to their tenant’s boundary:
 
 **Decision**
 
-Create [IAM Session Broker](#iam-session-broker-api) application that returns tenant-scoped temporary security credentials based on JWT claims for registered applications. IAM Session Broker should have a dedicated Git repository and a pipeline to reduce blast radius and increase delivery performance. Identity Provider application is out of scope for this document.
+Create [IAM Session Broker](#iam-session-broker-api) and Identity Provider applications. IAM Session Broker returns tenant-scoped temporary security credentials based on JWT claims for registered applications. Identity Provider is not described in this example for brevity.
 
 **Consequences**
 
@@ -65,11 +65,11 @@ IAM Session Broker is on the critical path for upstream applications. Hence, it 
 
 **Context**
 
-We need to identify IAM Session Broker components.
+We need to define IAM Session Broker components by describing requirements on technical level.
 
 **Decision**
 
-Create API component with the following logical units:
+Create the following components:
 
 ![API](https://user-images.githubusercontent.com/4362270/231123426-c3d8567e-7071-4dd5-8322-02cd4bb381b5.jpg)
 
@@ -138,7 +138,7 @@ Delegate the product sub-domain to a dedicated AWS account so that each product 
 
 This approach supports cross-environment (account and Region) use cases by relying on naming convention.
 
-## Implementation
+## Code
 
 ### Toolchain
 
@@ -152,48 +152,41 @@ Project template: https://github.com/aws-samples/aws-cdk-project-structure-pytho
 
 IAM Session Broker: `iam-session-broker`
 
-### Code structure
+### Project structure
 
-_IAM Session Broker_
+**IAM Session Broker**
 ```
-components/
+service/
+  access_metadata.py
+    class AccessMetadata:
+      dynamodb.Table
   api/
-    runtime/
-      <AWS Lambda Powertools for Python application>
-    infrastructure.py
-      class API:
-        Gateway
-        CredentialsManager
-        AccessMetadata
-        ServiceRole
-      class Gateway:
-        apigatewayv2.Api
-        apigatewayv2.Model
-        apigatewayv2.Route
-        apigatewayv2.Stage
-        apigatewayv2.Authorizer
-        apigatewayv2.Deployment
-      class CredentialsManager:
-        lambda.Function
-        lambda.Alias
-        lambda.Version
-      class AccessMetadata:
-        dynamodb.Table
-      class ServiceRole:
-        iam.Role
-  infrastructure.py 
-    class Components:
-      API
-toolchain/
-  infrastructure.py
-    class Toolchain:
-      pipelines.CodePipeline
-      codebuild.Project
+    <Powertools for AWS Lambda (Python) application>
+  compute.py
+    class Compute:
+      iam.Role
+      lambda.Function
+      lambda.Alias
+      lambda.Version
+  gateway.py
+    class Gateway:
+      apigatewayv2.Api
+      apigatewayv2.Model
+      apigatewayv2.Route
+      apigatewayv2.Stage
+      apigatewayv2.Authorizer
+      apigatewayv2.Deployment
+  service_role.py
+    class ServiceRole:
+      iam.Role
+  service_stack.py
+    class ServiceStack:
+      service_role.ServiceRole
+      access_metadata.AccessMetadata
+      credentials_manager.compute.Compute
+      gateway.Gateway
 app.py
-  Components("IAMSessionBroker-Components-Sandbox")
-  Toolchain("IAMSessionBroker-Toolchain-Sandbox")
-
-  Toolchain("IAMSessionBroker-Toolchain-Production")
+  service.service_stack.ServiceStack("IAMSessionBroker-Service-Sandbox")
 ```
 
 ## Backlog

@@ -1,10 +1,10 @@
 # High-level application design from use case to code
 
-This example focuses on establishing application boundary and mapping architecture to code. Requirements are out of scope. **Note:** It is not necessarily the actual Amazon EC2 design.
+**Note:** It is not necessarily the actual Amazon EC2 design.
 
-## Working backwards
+## Use cases
 
-Company wants to build Amazon EC2 product. The first use case is to allow customers launch instances.
+Company wants to build an Amazon EC2 product. The first use case is to allow customers launch instances.
 
 ![image](https://github.com/alexpulver/adf/assets/4362270/4513c22e-485b-45a3-be72-7d166d2cd275)
 
@@ -14,43 +14,71 @@ First story is "As a developer, I want to launch an instance". Flow describes de
 
 ![image](https://github.com/alexpulver/adf/assets/4362270/e39e7d4c-aea3-4130-b1b8-60da4187745c)
 
+## Requirements
+
+Requirements are not described in this example for brevity.
+
+### Business
+
+### Technical
+
 ## Architecture
 
 ### Application boundaries
 
 **Context**
 
-We need to identify application boundaries by describing stories and flows on architecture level.
+We need to identify application boundaries by describing stories and flows on technical level.
 
 **Decision**
 
-The decision is to create two applications: _EC2 Instances Console_ and _EC2 Instances Control Plane_.
+The decision is to create two applications: _EC2 Instances Console_ and _EC2 Instances Control Plane_. 
 
 ![image](https://github.com/alexpulver/adf/assets/4362270/2108fb96-a317-4498-8db5-8ba7005fc17a)
+
+
+**Consequences**
 
 ### EC2 Instances Console components
 
 **Context**
 
-We need to identify EC2 Instances Console components.
+We need to identify EC2 Instances Console components by describing requirements on technical level.
 
 **Decision**
 
-_EC2 Instances Console_ application includes Toolchain and Service components. Toolchain includes Deployment Pipeline and Pull Request Build components. Service includes Network, Ingress, Compute, WebApp, Database and Monitoring components. Components use infrastructure services and runtime code to provide functionality. Application (metadata), Toolchain and Service resources deploy as a stack each.
+_EC2 Instances Console_ application contains _Toolchain_ and _Service_ components. _Toolchain_ component contains _Deployment Pipeline_ and _Pull Request Build_ components. _Service_ component contains _Network_, _Ingress_, _Compute_, _WebApp_, _Database_ and _Monitoring_ components. _Toolchain_ and _Service_ resources deploy as a stack each.
 
 ![image](https://github.com/alexpulver/adf/assets/4362270/faa17dc2-ed88-4e8d-b721-b6f421593a11)
 
-_EC2 Instances Control Plane_ is out of scope.
+**Consequences**
 
-### Code structure
+### EC2 Instances Control Plane components
 
-_EC2 Instances Console_
+**Context**
 
-The example uses AWS Cloud Development Kit (AWS CDK) pseudo code for infrastructure services. It should be possible to use the same approach with other infrastructure automation tools.
+We need to identify EC2 Instances Control Plane components by describing requirements on technical level.
+
+**Decision**
+
+_EC2 Instances Control Plane_ is not described in this example for brevity.
+
+**Consequences**
+
+## Code
+
+### Git repositories
+EC2 Instances Console: `ec2-instances-console`
+
+### Project structure
+
+**EC2 Instances Console**
+
+The example uses AWS Cloud Development Kit (AWS CDK) pseudo code for resources configuration. It should be possible to use the same approach with other cloud automation tools.
 
 ```
 service/
-    webapp/
+    ui/
         Dockerfile
         app.py
         instances.py
