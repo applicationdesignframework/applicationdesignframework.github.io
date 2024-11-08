@@ -1,8 +1,8 @@
 # Application Design Framework (ADF)
-Reduce lead time, minimize rework, ease evolution.
+Shorten lead time, minimize rework, ease evolution.
 
 ## Context
-The Application Design Framework (ADF) helps companies respond quickly to market demands by reducing design-to-implementation gaps, thus minimizing rework, and providing easy-to-adopt [guidelines](#guidelines) and a structured [template](templates/application/README.md) for smoother adoption.
+The Application Design Framework (ADF) helps companies respond quickly to market demands by reducing design-to-implementation gaps using easy-to-adopt [guidelines](#guidelines).
 
 ## Definitions
 
