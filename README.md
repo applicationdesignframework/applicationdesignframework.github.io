@@ -1,7 +1,7 @@
 # Application Design Framework (ADF)
 Shorten lead time, minimize rework, ease evolution.
 
-## Context
+## Purpose
 The Application Design Framework (ADF) helps companies respond quickly to market demands by reducing design-to-implementation gaps using easy-to-adopt [guidelines](#guidelines).
 
 ## Definitions
@@ -12,7 +12,7 @@ Application boundary <sup>[1]</sup>:
 * An **initiative** that those with the money see as a single budget
 
 Architecture <sup>[2][3]</sup>:
-* An **architecture** describes how components work together. How components communicate and interact is often the focus of architecture diagrams. Architecture characteristics, often referred to as “the -ilities,” are orthogonal to the domain functionality. 
+* An **architecture** describes how components work together. How components communicate and interact is often the focus of architecture diagrams. 
 
 Component <sup>[4]</sup>:
 * Software **components** are things that are independently replaceable and upgradeable.
