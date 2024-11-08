@@ -49,6 +49,7 @@ ADF introduces the following guidelines along with related personas:
 ## Next areas of research
 * Mechanism to adopt ADF for new or existing applications
 * Organizing ADF information for multiple use cases and applications
+* Use [conditions of satisfaction (acceptance criteria)](https://www.mountaingoatsoftware.com/blog/clarifying-the-relationship-between-definition-of-done-and-conditions-of-sa) together with or instead of the requirements section
 
 ## References
 1. Martin Fowler - [ApplicationBoundary](https://martinfowler.com/bliki/ApplicationBoundary.html)
