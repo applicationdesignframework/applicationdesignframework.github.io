@@ -46,10 +46,11 @@ ADF introduces the following guidelines along with related personas:
 ## Related guidance
 * [Awesome Architecture](https://github.com/alexpulver/awesome-architecture) - concepts and foundations, followed by jobs-to-be-done
 
-## Next areas of research
-* Mechanism to adopt ADF for new or existing applications
-* Organizing ADF information for multiple use cases and applications
-* Use [conditions of satisfaction (acceptance criteria)](https://www.mountaingoatsoftware.com/blog/clarifying-the-relationship-between-definition-of-done-and-conditions-of-sa) together with or instead of the requirements section
+## Ongoing research
+* A mechanism for introducing ADF into organization (inputs, tools, adoption, inspection, iteration, outputs).
+* Organizing ADF information for multiple use cases and applications.
+* Using [conditions of satisfaction (acceptance criteria)](https://www.mountaingoatsoftware.com/blog/clarifying-the-relationship-between-definition-of-done-and-conditions-of-sa) together with or instead of the requirements section.
+* Linking architecrual decision records (ADRs) to requirements and stories (e.g., referencing the related requirement(s) and story(ies) in ADR context) to check impact of an architectural check during design phase.
 
 ## References
 1. Martin Fowler - [ApplicationBoundary](https://martinfowler.com/bliki/ApplicationBoundary.html)
