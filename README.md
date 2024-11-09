@@ -1,11 +1,9 @@
 # Application Design Framework (ADF)
-Shorten lead time, minimize rework, ease evolution.
 
 ## Purpose
-The Application Design Framework (ADF) helps companies respond quickly to market demands by reducing design-to-implementation gaps using easy-to-adopt [guidelines](#guidelines).
+The Application Design Framework (ADF) reduces lead time by bridging product-to-engineering gaps.
 
 ## Definitions
-
 Application boundary <sup>[1]</sup>:
 * A **body of code** that's seen by developers as a single unit
 * A **group of functionality** that business customers see as a single unit
