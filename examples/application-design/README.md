@@ -1,41 +1,32 @@
 # High-level application design from use case to code
-
 **Note:** It is not necessarily the actual Amazon EC2 design.
 
-## Use cases
-
+## Use case
 Company wants to build an Amazon EC2 product. The first use case is to allow customers launch instances.
 
-![image](https://github.com/alexpulver/adf/assets/4362270/4513c22e-485b-45a3-be72-7d166d2cd275)
+### Business flow
+![](https://github.com/alexpulver/adf/assets/4362270/e39e7d4c-aea3-4130-b1b8-60da4187745c)
 
-## Stories and flows
-
-First story is "As a developer, I want to launch an instance". Flow describes developer experience launching an instance using AWS Management Console.
-
-![image](https://github.com/alexpulver/adf/assets/4362270/e39e7d4c-aea3-4130-b1b8-60da4187745c)
+## Features and stories
+Feature: Manage EC2 instances
+* User story: As a developer, I want to launch an instance
 
 ## Requirements
-
 Requirements are not described in this example for brevity.
-
-### Business
-
-### Technical
 
 ## Architecture
 
-### Application boundaries
+### Technical flow
+![](https://github.com/alexpulver/adf/assets/4362270/2108fb96-a317-4498-8db5-8ba7005fc17a)
 
+### Application boundaries
 **Context**
 
-We need to identify application boundaries by describing stories and flows on technical level.
+We need to decide on application boundaires based on the technical flow.
 
 **Decision**
 
 The decision is to create two applications: _EC2 Instances Console_ and _EC2 Instances Control Plane_. 
-
-![image](https://github.com/alexpulver/adf/assets/4362270/2108fb96-a317-4498-8db5-8ba7005fc17a)
-
 
 **Consequences**
 

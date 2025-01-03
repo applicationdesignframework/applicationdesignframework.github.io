@@ -1,6 +1,8 @@
-## Use cases
+## Use case
 
-## Stories and flows
+### Business flow
+
+## Features and stories
 
 ## Requirements
 
@@ -10,10 +12,10 @@
 
 ## Architecture
 
+### Technical flow
+
 ### Application boundaries
 **Context**
-
-We need to identify application boundaries by describing stories and flows on technical level.
 
 **Decision**
 
@@ -22,13 +24,11 @@ We need to identify application boundaries by describing stories and flows on te
 ### Application X components
 **Context**
 
-We need to identify Application X components by describing requirements on technical level.
-
 **Decision**
 
 **Consequences**
 
-### Title
+### [Title]
 **Context**
 
 **Decision**

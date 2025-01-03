@@ -21,13 +21,17 @@ Component <sup>[4]</sup>:
 > Application boundary should evolve with organizational and software changes.
 
 ## Guidelines
-ADF introduces the following guidelines along with related personas:
-1. **Capture use cases and features [Sales, Marketing, Product]** to clarify problem and solution. Write a paragraph or [press release/frequently asked questions (PR/FAQ)](https://productstrategy.co/working-backwards-the-amazon-prfaq-for-product-innovation/) or [pitch](https://basecamp.com/shapeup/1.5-chapter-06). Use [domain storytelling](https://domainstorytelling.org/quick-start-guide) and/or [event storming](https://en.wikipedia.org/wiki/Event_storming) to identify bounded contexts and stories.
-2. **Write stories and flows [Product, Engineering]** to start conversation about requirements. Choose story syntax: 1/ User Story – “As a [type of user] I [want this thing] so that [I can accomplish this goal]” (e.g., “As a site visitor, I want to see new content when I come to the site, so I come back more often”) 2/ Job Story – “When [situation], I want to [motivation], so I can [expected outcome]” (e.g., “When it’s dinner time tonight, I want to have pizza so I can easily feed my friends”) 3/ Feature-Driven Development (FDD) – “[action] the [result] [by/for/of/to] a(n) [object]” (e.g., “Generate a unique identifier for a transaction”). Describe the flow (e.g., "Navigate to example.com", "Sign-in", "Open 'My Files' view", "Select a file", "Click on 'Download'", "Choose where to store the file", "Click 'Save'").
-3. **Define requirements [Product, Engineering]** to guide architectural decisions. Group requirements into business and technical categories. Prioritize [architecturally significant requirements](https://en.wikipedia.org/wiki/Architecturally_significant_requirements): business value/risk, stakeholder concern, quality level, external dependencies, cross-cutting, first-of-a-kind, source of problems on past projects. Consider operational excellence, security, reliability, performance efficiency and cost optimization <sup>[5]</sup>.
-4. **Define architecture [Product, Engineering]** to address requirements. Identify application boundaries by describing stories and flows on technical level. Identify application components by describing requirements on technical level. Choose technologies. Use the following “fracture planes” <sup>[6]</sup> to help decide on the boundaries: 1/ Profit and Loss Group 2/ Business Domain Bounded Context 3/ Regulatory Compliance 4/ Change Cadence 5/ Team Location 6/ Risk 7/ Performance Isolation 8/ Technology 9/ User Personas. Capture [Architectural Decision Records (ADRs)](https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/appendix.html) including “why” behind decisions, options considered, trade-offs, and consequences. ADRs allow to evolve the architecture starting from known design considerations. Consider building proof of concept (POC) to validate the decisions.
-5. **Create one or more repositories and a single pipeline per application [Engineering]** to reduce blast radius and increase delivery performance.
-6. **Structure resources configuration and business logic code by application component [Engineering]** to align design with implementation, streamline onboarding, simplify operations, and ease evolution.
+1. **Describe use case and features (Sales, Marketing, Product)** to clarify problem and solution. Describe business flow using [domain storytelling](https://domainstorytelling.org/quick-start-guide) and/or [event storming](https://en.wikipedia.org/wiki/Event_storming). Identify bounded contexts and external dependencies. Write a summary or [press release/frequently asked questions (PR/FAQ)](https://productstrategy.co/working-backwards-the-amazon-prfaq-for-product-innovation/) or [pitch](https://basecamp.com/shapeup/1.5-chapter-06). Document business requirements.
+
+2. **Define architecture (Product, Engineering)** to address business requirements. Describe business flow on technical level (e.g. load balancer => api => database). Identify application boundaries and components. Use “fracture planes” <sup>[5]</sup> to help decide on application boundaries: 1/ profit and loss group 2/ business domain bounded context 3/ regulatory compliance 4/ change cadence 5/ team location 6/ risk 7/ performance isolation 8/ technology 9/ user personas. Consider the following integration dimensions: 1/ service discovery (e.g. IP addresses, DNS) 2/ data format (e.g. binary, XML, JSON, protobuf, Avro) 3/ interaction type (e.g. sync, async) 4/ interaction style (e.g. messaging, RPC, query, GraphQL). Document technical requirements.
+
+3. **Choose technologies (Engineering)** to address technical requirements. Consider building proof of concept (POC) to validate feasibility. Use [architectural decision records (ADRs)](https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/appendix.html) to explain decisions, options considered, trade-offs and consequences. Review decisions based on the following pillars <sup>[6]</sup>: 1/ operational excellence 2/ security 3/ reliability 4/ performance efficiency 5/ cost optimization.
+
+4. **Write stories (Product, Engineering)** to scope implementation. Use the following story types: 1/ User Story – “As a [type of user] I [want this thing] so that [I can accomplish this goal]” (e.g., “As a site visitor, I want to see new content when I come to the site, so I come back more often”) 2/ Job Story – “When [situation], I want to [motivation], so I can [expected outcome]” (e.g., “When it’s dinner time tonight, I want to have pizza so I can easily feed my friends”) 3/ Feature-Driven Development (FDD) – “[action] the [result] [by/for/of/to] a(n) [object]” (e.g., “Generate a unique identifier for a transaction”). Align stories with features.
+
+5. **Create one or more repositories and a single pipeline per application (Engineering)** to reduce blast radius and increase delivery performance.
+
+6. **Organize resources configuration and business logic code by application component (Engineering)** to align architecture with code.
 
 ## Examples
 * [High-level application design from use case to code](examples/application-design/README.md)
@@ -35,7 +39,7 @@ ADF introduces the following guidelines along with related personas:
 * [IAM Session Broker application](examples/iam-session-broker/README.md)
 
 ## Templates
-* [Application](templates/application/README.md)
+* [Standard](templates/standard/README.md)
 
 ## Related frameworks
 * [AWS Well-Architected Framework](https://aws.amazon.com/architecture/well-architected/) - apply architectural best practices for designing and operating reliable, secure, efficient, cost-effective, and sustainable systems.
@@ -43,17 +47,18 @@ ADF introduces the following guidelines along with related personas:
 
 ## Related guidance
 * [Awesome Architecture](https://github.com/alexpulver/awesome-architecture) - concepts and foundations, followed by jobs-to-be-done
+* [AWS Decision Guides](https://aws.amazon.com/getting-started/decision-guides/) - choose the AWS services that might be right for you and your use cases
 
 ## Ongoing research
 * A mechanism for introducing ADF into organization (inputs, tools, adoption, inspection, iteration, outputs).
 * Organizing ADF information for multiple use cases and applications.
 * Using [conditions of satisfaction (acceptance criteria)](https://www.mountaingoatsoftware.com/blog/clarifying-the-relationship-between-definition-of-done-and-conditions-of-sa) together with or instead of the requirements section.
-* Linking architecrual decision records (ADRs) to requirements and stories (e.g., referencing the related requirement(s) and story(ies) in ADR context) to check impact of an architectural check during design phase.
+* Linking architecrual decision records (ADRs) to requirements and stories (e.g., referencing the related requirement(s) and story(ies) in ADR context) to check impact of an architectural change during design phase.
 
 ## References
 1. Martin Fowler - [ApplicationBoundary](https://martinfowler.com/bliki/ApplicationBoundary.html)
 2. AWS Well-Architected Framework - [Definitions](https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html)
 3. Neal Ford and Mark Richards - [Software Architecture: the Hard Parts](https://www.infoq.com/podcasts/software-architecture-hard-parts/)
 4. Martin Fowler - [SoftwareComponent](https://martinfowler.com/bliki/SoftwareComponent.html)
-5. AWS Well-Architected Framework - [Pillars](https://docs.aws.amazon.com/wellarchitected/latest/framework/the-pillars-of-the-framework.html)
-6. Matthew Skelton - [Designing organizations for responsiveness](https://blog.matthewskelton.net/2017/11/07/designing-organisations-for-responsiveness/#more-2053)
+5. Matthew Skelton - [Designing organizations for responsiveness](https://blog.matthewskelton.net/2017/11/07/designing-organisations-for-responsiveness/#more-2053)
+6. AWS Well-Architected Framework - [Pillars](https://docs.aws.amazon.com/wellarchitected/latest/framework/the-pillars-of-the-framework.html)

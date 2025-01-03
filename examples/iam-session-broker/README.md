@@ -1,14 +1,15 @@
-## Use cases
+## Use case
 
 A multi-tenant SaaS offering composes multiple applications. Applications use a shared IAM Session Broker library to scope user access to their tenant’s boundary. SaaS provider wants to build a shared IAM Session Broker application instead to reduce operational overhead and improve security posture. The application should initially support the ABAC authorization strategy.
 
-## Stories and flows
+### Business flow
+* SaaS admin registers users for Yellow and Blue tenants
+* Yellow user authenticates
+* Yellow user downloads Yellow data
 
-* Scope the user access to their tenant’s boundary
-  * SaaS admin registers users for Yellow and Blue tenants
-  * Yellow user authenticates
-  * Yellow user downloads Yellow data
-  * Yellow user gets access denied when trying to download Blue data
+## Features and stories
+Feature: Tenant isolation
+* Job story: Scope the user access to their tenant’s boundary
 
 ## Requirements
 
@@ -37,21 +38,20 @@ A multi-tenant SaaS offering composes multiple applications. Applications use a 
 
 ## Architecture
 
-### Application boundaries
-
-**Context**
-
-We need to identify application boundaries by describing stories and flows on technical level.
-
-Scope the user access to their tenant’s boundary:
-
-![Scope the user access to their tenant’s boundary](https://user-images.githubusercontent.com/4362270/231122057-cfdbab53-ebc2-4344-8348-2b77c6e43e6b.jpg)
+### Technical flow
+![](https://user-images.githubusercontent.com/4362270/231122057-cfdbab53-ebc2-4344-8348-2b77c6e43e6b.jpg)
 
 1. Yellow user authenticates using Identity Provider and gets a JWT
 2. Yellow user accesses the Application with JWT to download Yellow data
 3. Application calls IAM Session Broker to acquire Yellow-scoped temporary security credentials
 4. IAM Session Broker verifies the JWT and returns Yellow-scoped temporary security credentials
 5. Application returns Yellow data to the user
+
+### Application boundaries
+
+**Context**
+
+We need to decide on application boundaires based on the technical flow.
 
 **Decision**
 
