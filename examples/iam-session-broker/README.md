@@ -51,7 +51,7 @@ Feature: Tenant isolation
 
 **Context**
 
-We need to decide on application boundaires based on the technical flow.
+We need to define application boundaires based on the technical flow.
 
 **Decision**
 
@@ -65,7 +65,7 @@ IAM Session Broker is on the critical path for upstream applications. Hence, it 
 
 **Context**
 
-We need to define IAM Session Broker components by describing requirements on technical level.
+We need to define IAM Session Broker components based on the technical flow.
 
 **Decision**
 

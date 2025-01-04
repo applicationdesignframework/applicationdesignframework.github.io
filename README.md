@@ -21,9 +21,9 @@ Component <sup>[4]</sup>:
 > Application boundary should evolve with organizational and software changes.
 
 ## Guidelines
-1. **Describe use case and features (Sales, Marketing, Product)** to clarify problem and solution. Describe business flow using [domain storytelling](https://domainstorytelling.org/quick-start-guide) and/or [event storming](https://en.wikipedia.org/wiki/Event_storming). Identify bounded contexts and external dependencies. Write a summary or [press release/frequently asked questions (PR/FAQ)](https://productstrategy.co/working-backwards-the-amazon-prfaq-for-product-innovation/) or [pitch](https://basecamp.com/shapeup/1.5-chapter-06). Document business requirements.
+1. **Describe use case and features (Sales, Marketing, Product)** to clarify problem and solution. Describe business flow using [domain storytelling](https://domainstorytelling.org/quick-start-guide) and/or [event storming](https://en.wikipedia.org/wiki/Event_storming). Identify bounded contexts and external dependencies. Consider writing [press release/frequently asked questions (PR/FAQ)](https://www.aboutamazon.com/news/workplace/an-insider-look-at-amazons-culture-and-processes) narrative ([example](https://www.allthingsdistributed.com/2024/11/aws-lambda-turns-10-a-rare-look-at-the-doc-that-started-it.html)) or [pitch](https://basecamp.com/shapeup/1.5-chapter-06). Document business requirements.
 
-2. **Define architecture (Product, Engineering)** to address business requirements. Describe business flow on technical level (e.g. load balancer => api => database). Identify application boundaries and components. Use “fracture planes” <sup>[5]</sup> to help decide on application boundaries: 1/ profit and loss group 2/ business domain bounded context 3/ regulatory compliance 4/ change cadence 5/ team location 6/ risk 7/ performance isolation 8/ technology 9/ user personas. Consider the following integration dimensions: 1/ service discovery (e.g. IP addresses, DNS) 2/ data format (e.g. binary, XML, JSON, protobuf, Avro) 3/ interaction type (e.g. sync, async) 4/ interaction style (e.g. messaging, RPC, query, GraphQL). Document technical requirements.
+2. **Define architecture (Product, Engineering)** to address business requirements. Describe technical flow (e.g., load balancer => api => database) based on business flow. Identify application boundaries and components. Use “fracture planes” <sup>[5]</sup> to help decide on application boundaries: 1/ profit and loss group 2/ business domain bounded context 3/ regulatory compliance 4/ change cadence 5/ team location 6/ risk 7/ performance isolation 8/ technology 9/ user personas. Consider the following integration dimensions: 1/ service discovery (e.g., IP addresses, DNS) 2/ data format (e.g., binary, XML, JSON, protobuf, Avro) 3/ interaction type (e.g., sync, async) 4/ interaction style (e.g., messaging, RPC, query, GraphQL). Document technical requirements.
 
 3. **Choose technologies (Engineering)** to address technical requirements. Consider building proof of concept (POC) to validate feasibility. Use [architectural decision records (ADRs)](https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/appendix.html) to explain decisions, options considered, trade-offs and consequences. Review decisions based on the following pillars <sup>[6]</sup>: 1/ operational excellence 2/ security 3/ reliability 4/ performance efficiency 5/ cost optimization.
 
@@ -31,7 +31,7 @@ Component <sup>[4]</sup>:
 
 5. **Create one or more repositories and a single pipeline per application (Engineering)** to reduce blast radius and increase delivery performance.
 
-6. **Organize resources configuration and business logic code by application component (Engineering)** to align architecture with code.
+6. **Organize resources configuration and business logic code by application components (Engineering)** to align architecture with code.
 
 ## Examples
 * [High-level application design from use case to code](examples/application-design/README.md)

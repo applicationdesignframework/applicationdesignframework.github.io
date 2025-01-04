@@ -22,7 +22,7 @@ Requirements are not described in this example for brevity.
 ### Application boundaries
 **Context**
 
-We need to decide on application boundaires based on the technical flow.
+We need to define application boundaires based on the technical flow.
 
 **Decision**
 
@@ -34,7 +34,7 @@ The decision is to create two applications: _EC2 Instances Console_ and _EC2 Ins
 
 **Context**
 
-We need to identify EC2 Instances Console components by describing requirements on technical level.
+We need to define EC2 Instances Console components based on the technical flow.
 
 **Decision**
 
@@ -48,7 +48,7 @@ _EC2 Instances Console_ application contains _Toolchain_ and _Service_ component
 
 **Context**
 
-We need to identify EC2 Instances Control Plane components by describing requirements on technical level.
+We need to define EC2 Instances Control Plane components based on the technical flow.
 
 **Decision**
 
@@ -65,7 +65,7 @@ EC2 Instances Console: `ec2-instances-console`
 
 **EC2 Instances Console**
 
-The example uses AWS Cloud Development Kit (AWS CDK) pseudo code for resources configuration. It should be possible to use the same approach with other cloud automation tools.
+The example uses AWS Cloud Development Kit (AWS CDK) pseudo code for resources configuration. It should be possible to use the same approach with other tools.
 
 ```
 service/
