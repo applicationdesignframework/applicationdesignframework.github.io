@@ -39,7 +39,8 @@ Component <sup>[4]</sup>:
 * [IAM Session Broker application](examples/iam-session-broker/README.md)
 
 ## Templates
-* [Standard](templates/standard/README.md)
+* [Standard (Markdown)](templates/Standard.txt)
+* [Standard (Word)](templates/Standard.docx)
 
 ## Related frameworks
 * [AWS Well-Architected Framework](https://aws.amazon.com/architecture/well-architected/) - apply architectural best practices for designing and operating reliable, secure, efficient, cost-effective, and sustainable systems.
