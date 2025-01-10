@@ -2,14 +2,18 @@
 **Note:** It is not necessarily the actual Amazon EC2 design.
 
 ## Use case
-Company wants to build an Amazon EC2 product. The first use case is to allow customers launch instances.
+Offer virtual machines (instances) as a service.
 
 ### Business flow
 ![](https://github.com/alexpulver/adf/assets/4362270/e39e7d4c-aea3-4130-b1b8-60da4187745c)
 
 ## Features and stories
-Feature: Manage EC2 instances
-* User story: As a developer, I want to launch an instance
+Instance type with Intel CPU and local NVMe storage
+* As a developer, I want to launch an instance
+* As a developer, I want to stop an instance
+* As a developer, I want to delete an instance
+* As a budget owner, I want to know the usage cost of an instance
+* As a security engineer, I want to define instance’s network perimeter
 
 ## Requirements
 Requirements are not described in this example for brevity.
@@ -38,11 +42,24 @@ We need to define EC2 Instances Console components based on the technical flow.
 
 **Decision**
 
-_EC2 Instances Console_ application contains _Toolchain_ and _Service_ components. _Toolchain_ component contains _Deployment Pipeline_ and _Pull Request Build_ components. _Service_ component contains _Network_, _Ingress_, _Compute_, _WebApp_, _Database_ and _Monitoring_ components. _Toolchain_ and _Service_ resources deploy as a stack each.
+_EC2 Instances Console_ application contains _Toolchain_ and _Service_ components. _Toolchain_ component contains _Deployment Pipeline_ and _Pull Request Build_ components. _Service_ component contains _Network_, _Ingress_, _UI_, _Database_ and _Monitoring_ components. _Toolchain_ and _Service_ resources deploy as a stack each.
 
-![image](https://github.com/alexpulver/adf/assets/4362270/faa17dc2-ed88-4e8d-b721-b6f421593a11)
+![](https://github.com/user-attachments/assets/daf03e38-5eea-4392-b4cd-17ad7ea5b885)
 
 **Consequences**
+
+### EC2 Instances Console technologies
+
+**Context**
+
+We need to choose technologies to implement EC2 Instances Console components.
+
+**Decision**
+
+![](https://github.com/user-attachments/assets/13285ca5-f7aa-465f-b587-86b781b09834)
+
+**Consequences**
+
 
 ### EC2 Instances Control Plane components
 
@@ -70,16 +87,17 @@ The example uses AWS Cloud Development Kit (AWS CDK) pseudo code for resources c
 ```
 service/
     ui/
-        Dockerfile
-        app.py
-        instances.py
-    compute.py
-        class Compute(Construct):
-            ec2.SecurityGroup
-            ecs.Cluster
-            ecs.Service
-            ecs.TaskDefinition
-            ecr_assets.DockerImageAsset
+        app/
+            Dockerfile
+            instances.py
+            main.py
+        compute.py
+            class Compute(Construct):
+                ec2.SecurityGroup
+                ecs.Cluster
+                ecs.Service
+                ecs.TaskDefinition
+                ecr_assets.DockerImageAsset
     database.py
         class Database(Construct):
             ec2.SecurityGroup
@@ -106,11 +124,11 @@ service/
             ec2.RouteTable
     service_stack.py
         class ServiceStack(Stack):
-            compute.Compute
-            database.Database
-            ingress.Ingress
-            monitoring.Monitoring
             network.Network
+            ingress.Ingress
+            database.Database
+            ui.compute.Compute
+            monitoring.Monitoring
 toolchain/
     deployment_pipeline.py
         class DeploymentPipeline(Construct):

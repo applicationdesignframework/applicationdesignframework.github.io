@@ -55,7 +55,7 @@ We need to define application boundaires based on the technical flow.
 
 **Decision**
 
-Create [IAM Session Broker](#iam-session-broker-api) and Identity Provider applications. IAM Session Broker returns tenant-scoped temporary security credentials based on JWT claims for registered applications. Identity Provider is not described in this example for brevity.
+Create IAM Session Broker and Identity Provider applications. IAM Session Broker returns tenant-scoped temporary security credentials based on JWT claims for registered applications. Identity Provider is not described in this example for brevity.
 
 **Consequences**
 
@@ -71,17 +71,17 @@ We need to define IAM Session Broker components based on the technical flow.
 
 Create the following components:
 
-![API](https://user-images.githubusercontent.com/4362270/231123426-c3d8567e-7071-4dd5-8322-02cd4bb381b5.jpg)
+![](https://github.com/user-attachments/assets/aaebadb7-e04a-4c89-b618-748e8b2b8e71)
 
-Gateway should authorize requests and throttle if needed to prevent the “noisy neighbor” problem. Gateway should proxy all authorized and non-throttled requests to Credentials Manager. Credentials Manager should 1/ fetch Access Metadata 2/ call Temporary Security Credentials Provider to assume the Service Role 3/ call Temporary Security Credentials Provider using the Service Role credentials to assume the access role 4/ return the scoped temporary security credentials.
+Gateway should authorize requests and throttle if needed to prevent the “noisy neighbor” problem. Gateway should proxy all authorized and non-throttled requests to API. API should 1/ fetch Access Metadata 2/ call Temporary Security Credentials Provider to assume the Service Role 3/ call Temporary Security Credentials Provider using the Service Role credentials to assume the access role 4/ return the scoped temporary security credentials.
 
 _Gateway_
 
-Use Amazon API Gateway HTTP API with [IAM authorization](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-access-control-iam.html). Use proxy integration for Credentials Manager. Leverage [usage plans](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-usage-plans.html) to prevent the “noisy neighbor” problem. Use the Lambda authorizer as the API key source ([example](https://catalog.us-east-1.prod.workshops.aws/workshops/026f84fd-f589-4a59-a4d1-81dc543fcd30/en-US/mod-5-usage/5d-use-authorizer)) and application name as the API key.
+Use Amazon API Gateway HTTP API with [IAM authorization](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-access-control-iam.html). Use proxy integration for API. Leverage [usage plans](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-usage-plans.html) to prevent the “noisy neighbor” problem. Use the Lambda authorizer as the API key source ([example](https://catalog.us-east-1.prod.workshops.aws/workshops/026f84fd-f589-4a59-a4d1-81dc543fcd30/en-US/mod-5-usage/5d-use-authorizer)) and application name as the API key.
 
-_Credentials Manager_
+_API_
 
-Use Lambda function and [Lambda Powertools for Python](https://awslabs.github.io/aws-lambda-powertools-python/). Use Lambda [provisioned concurrency](https://docs.aws.amazon.com/lambda/latest/dg/provisioned-concurrency.html) to reduce latency. Cache applications scoped temporary security credentials to further reduce latency.
+Use Lambda function and [Powertools for AWS Lambda (Python)](https://docs.powertools.aws.dev/lambda/python/latest/). Use Lambda [provisioned concurrency](https://docs.aws.amazon.com/lambda/latest/dg/provisioned-concurrency.html) to reduce latency. Cache applications scoped temporary security credentials to further reduce latency.
 
 | Request | Description | Request body | Response |
 | ------- | ----------- | ------------ | -------- |
@@ -110,7 +110,7 @@ Create `IAMSessionBroker` IAM role. Creating a dedicated Service Role enables fl
 
 To support cross-account scenarios, would need to replace API Gateway HTTP API by API Gateway REST API, because HTTP API [doesn’t support](https://aws.amazon.com/premiumsupport/knowledge-center/api-gateway-iam-cross-account/) resource policies at this time.
 
-Credentials Manager uses [role chaining](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html#iam-term-role-chaining): 1/ assume Service Role 2/ assume application access role. Role chaining limits the role session to a maximum of one hour. In the worst case scenario, the Credentials Manager will need to call Temporary Security Credentials Provider (AWS STS) every hour for a specific application.
+API uses [role chaining](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html#iam-term-role-chaining): 1/ assume Service Role 2/ assume application access role. Role chaining limits the role session to a maximum of one hour. In the worst case scenario, the API will need to call Temporary Security Credentials Provider (AWS STS) every hour for a specific application.
 
 ### Service discovery
 
@@ -161,13 +161,14 @@ service/
     class AccessMetadata:
       dynamodb.Table
   api/
-    <Powertools for AWS Lambda (Python) application>
-  compute.py
-    class Compute:
-      iam.Role
-      lambda.Function
-      lambda.Alias
-      lambda.Version
+    app/
+      main.py
+    compute.py
+      class Compute:
+        iam.Role
+        lambda.Function
+        lambda.Alias
+        lambda.Version
   gateway.py
     class Gateway:
       apigatewayv2.Api
@@ -183,7 +184,7 @@ service/
     class ServiceStack:
       service_role.ServiceRole
       access_metadata.AccessMetadata
-      credentials_manager.compute.Compute
+      api.compute.Compute
       gateway.Gateway
 app.py
   service.service_stack.ServiceStack("IAMSessionBroker-Service-Sandbox")
