@@ -36,7 +36,7 @@ Feature: Tenant isolation
 ## Architecture
 
 ### Technical flow
-![](https://user-images.githubusercontent.com/4362270/231122057-cfdbab53-ebc2-4344-8348-2b77c6e43e6b.jpg)
+![](system-architecture.png)
 
 1. Yellow user authenticates using Identity Provider and gets a JWT
 2. Yellow user accesses the Application with JWT to download Yellow data
@@ -67,7 +67,7 @@ We need to define IAM Session Broker components based on the technical flow.
 
 Create the following components:
 
-![](https://github.com/user-attachments/assets/5105d66b-5939-4818-a3c2-139fa9f94a21)
+![](iam-session-broker-architecture.png)
 
 API Gateway should authorize requests and throttle if needed to prevent the “noisy neighbor” problem. API Gateway should proxy all authorized and non-throttled requests to API. API should 1/ fetch access metadata from Access Database 2/ call Temporary Security Credentials Provider to assume the Service Role 3/ call Temporary Security Credentials Provider using the Service Role credentials to assume the access role 4/ return the scoped temporary security credentials.
 
