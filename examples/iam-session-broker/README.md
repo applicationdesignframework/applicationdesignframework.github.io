@@ -1,5 +1,4 @@
 ## Use case
-
 A multi-tenant SaaS offering composes multiple applications. Applications use a shared IAM Session Broker library to scope user access to their tenant’s boundary. SaaS provider wants to build a shared IAM Session Broker application instead to reduce operational overhead and improve security posture. The application should initially support the ABAC authorization strategy.
 
 ### Business flow
@@ -14,14 +13,12 @@ Feature: Tenant isolation
 ## Requirements
 
 ### Business
-
 * Require the applications to use ABAC with `${aws:PrincipalTag/`*`key`*`}` variable in policies for scoping access
 * Require the applications to register and provide the following access metadata:
   * Access role name (e.g. `DocumentsAPIDataAccess`)
   * Session tag key (e.g. `TenantID`)
   * JWT claim name (e.g. `custom:tenant_id`)
   * [JSON Web Key (JWK) Set URL](https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-using-tokens-verifying-a-jwt.html#amazon-cognito-user-pools-using-tokens-step-2) (e.g. `https://cognito-idp.<Region>.amazonaws.com/<userPoolId>/.well-known/jwks.json`)
-* Organize the access metadata by application name
 * Use the assumed-role session principal (service) role name for application name during registration
 * Authorize the registration requests for assumed-role session principals in the same account
 * Authorize the temporary security credentials requests for a registered application and a valid JWT
@@ -29,7 +26,7 @@ Feature: Tenant isolation
 * Return the scoped temporary security credentials by assuming the access role. Tag the session with the registered session tag key and JWT claim name value as the session tag key value.
 
 ### Technical
-
+* Organize the access metadata by application name
 * Generate SDKs for multiple programming languages from service specification
 * Collect audit logs for security and compliance
 * Use AWS STS to request temporary security credentials
@@ -48,14 +45,13 @@ Feature: Tenant isolation
 5. Application returns Yellow data to the user
 
 ### Application boundaries
-
 **Context**
 
 We need to define application boundaires based on the technical flow.
 
 **Decision**
 
-Create IAM Session Broker and Identity Provider applications. IAM Session Broker returns tenant-scoped temporary security credentials based on JWT claims for registered applications. Identity Provider is not described in this example for brevity.
+Create [IAM Session Broker](https://github.com/applicationdesignframework/iam-session-broker) and [Identity Provider](https://github.com/applicationdesignframework/identity-provider) applications. IAM Session Broker returns tenant-scoped temporary security credentials based on JWT claims for registered applications. Identity Provider is not described in this example for brevity.
 
 **Consequences**
 
@@ -71,26 +67,26 @@ We need to define IAM Session Broker components based on the technical flow.
 
 Create the following components:
 
-![](https://github.com/user-attachments/assets/aaebadb7-e04a-4c89-b618-748e8b2b8e71)
+![](https://github.com/user-attachments/assets/5105d66b-5939-4818-a3c2-139fa9f94a21)
 
-Gateway should authorize requests and throttle if needed to prevent the “noisy neighbor” problem. Gateway should proxy all authorized and non-throttled requests to API. API should 1/ fetch Access Metadata 2/ call Temporary Security Credentials Provider to assume the Service Role 3/ call Temporary Security Credentials Provider using the Service Role credentials to assume the access role 4/ return the scoped temporary security credentials.
+API Gateway should authorize requests and throttle if needed to prevent the “noisy neighbor” problem. API Gateway should proxy all authorized and non-throttled requests to API. API should 1/ fetch access metadata from Access Database 2/ call Temporary Security Credentials Provider to assume the Service Role 3/ call Temporary Security Credentials Provider using the Service Role credentials to assume the access role 4/ return the scoped temporary security credentials.
 
-_Gateway_
+_API Gateway_
 
-Use Amazon API Gateway HTTP API with [IAM authorization](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-access-control-iam.html). Use proxy integration for API. Leverage [usage plans](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-usage-plans.html) to prevent the “noisy neighbor” problem. Use the Lambda authorizer as the API key source ([example](https://catalog.us-east-1.prod.workshops.aws/workshops/026f84fd-f589-4a59-a4d1-81dc543fcd30/en-US/mod-5-usage/5d-use-authorizer)) and application name as the API key.
+Use Amazon API Gateway HTTP API with [IAM authorization](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-access-control-iam.html). Use Lambda proxy integration for API. Leverage [usage plans](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-api-usage-plans.html) to prevent the “noisy neighbor” problem. Use the Lambda authorizer as the API key source ([example](https://catalog.us-east-1.prod.workshops.aws/workshops/026f84fd-f589-4a59-a4d1-81dc543fcd30/en-US/mod-5-usage/5d-use-authorizer)) and application name as the API key.
 
 _API_
 
-Use Lambda function and [Powertools for AWS Lambda (Python)](https://docs.powertools.aws.dev/lambda/python/latest/). Use Lambda [provisioned concurrency](https://docs.aws.amazon.com/lambda/latest/dg/provisioned-concurrency.html) to reduce latency. Cache applications scoped temporary security credentials to further reduce latency.
+Use Lambda function for compute and [Powertools for AWS Lambda (Python)](https://docs.powertools.aws.dev/lambda/python/latest/) for application. Use Lambda [provisioned concurrency](https://docs.aws.amazon.com/lambda/latest/dg/provisioned-concurrency.html) to reduce latency. Cache applications scoped temporary security credentials to further reduce latency.
 
 | Request | Description | Request body | Response |
 | ------- | ----------- | ------------ | -------- |
 | POST /applications | Register an application | {<br>&emsp;"AccessRoleName": "...",<br>&emsp;"SessionTagKey": "...",<br>&emsp;"JWTClaimName": "...",<br>&emsp;"JWKSetURL": "..."<br>} |  |
 | GET /credentials?jwt=X | Return scoped temporary security credentials |  | {<br>&emsp;"AccessKeyId":"...",<br>&emsp;"SecretAccessKey":"...",<br>&emsp;"SessionToken":"..."<br>} |
 
-_Access Metadata_
+_Access Database_
 
-Use Amazon DynamoDB. Create an `AccessMetadata` DynamoDB table. The table should store the registered access metadata.
+Use Amazon DynamoDB table. The table should store the registered access metadata.
 
 Data model (designed using [NoSQL WorkBench for DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/workbench.html)):
 
@@ -108,7 +104,7 @@ Create `IAMSessionBroker` IAM role. Creating a dedicated Service Role enables fl
 
 **Consequences**
 
-To support cross-account scenarios, would need to replace API Gateway HTTP API by API Gateway REST API, because HTTP API [doesn’t support](https://aws.amazon.com/premiumsupport/knowledge-center/api-gateway-iam-cross-account/) resource policies at this time.
+To support cross-account scenarios, we would need to replace API Gateway HTTP API by API Gateway REST API, because HTTP API [doesn’t support](https://aws.amazon.com/premiumsupport/knowledge-center/api-gateway-iam-cross-account/) resource policies at the time of this writing.
 
 API uses [role chaining](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html#iam-term-role-chaining): 1/ assume Service Role 2/ assume application access role. Role chaining limits the role session to a maximum of one hour. In the worst case scenario, the API will need to call Temporary Security Credentials Provider (AWS STS) every hour for a specific application.
 
@@ -141,53 +137,32 @@ This approach supports cross-environment (account and Region) use cases by relyi
 ## Code
 
 ### Toolchain
-
-Python: `3.9.11`
-
-AWS CDK Toolkit (CLI) and AWS CDK Construct Library: `2.69.0`
-
-Project template: https://github.com/aws-samples/aws-cdk-project-structure-python
+* Python: `3.9.11`
+* AWS CDK CLI version: `2.175.1`
+* AWS CDK library version: `2.175.1`
 
 ### Git repositories
-
-IAM Session Broker: `iam-session-broker`
+* IAM Session Broker: https://github.com/applicationdesignframework/iam-session-broker
+* Identity Provider: https://github.com/applicationdesignframework/identity-provider
 
 ### Project structure
 
 **IAM Session Broker**
+
+The project structure aligns with the architectural diagram, so that programmers can quickly find the code for each component.
+
 ```
 service/
-  access_metadata.py
-    class AccessMetadata:
-      dynamodb.Table
   api/
     app/
-      main.py
+      main.py  # Business logic application - Powertools for AWS Lambda (Python)
     compute.py
-      class Compute:
-        iam.Role
-        lambda.Function
-        lambda.Alias
-        lambda.Version
-  gateway.py
-    class Gateway:
-      apigatewayv2.Api
-      apigatewayv2.Model
-      apigatewayv2.Route
-      apigatewayv2.Stage
-      apigatewayv2.Authorizer
-      apigatewayv2.Deployment
+  access_database.py
+  api_gateway.py
   service_role.py
-    class ServiceRole:
-      iam.Role
   service_stack.py
-    class ServiceStack:
-      service_role.ServiceRole
-      access_metadata.AccessMetadata
-      api.compute.Compute
-      gateway.Gateway
-app.py
-  service.service_stack.ServiceStack("IAMSessionBroker-Service-Sandbox")
+contstants.py
+main.py  # Resources configuration application - AWS CDK
 ```
 
 ## Backlog
