@@ -143,5 +143,5 @@ toolchain/
 app.py
     service.service_stack.ServiceStack("EC2InstancesConsole-Service-Sandbox")
     toolchain.toolchain_stack.ToolchainStack("EC2InstancesConsole-Toolchain-Sandbox")
-    toolchain.toolchain_stack.ToolchainStack("EC2InstancesConsole-Toolchain-Management")
+    toolchain.toolchain_stack.ToolchainStack("EC2InstancesConsole-Toolchain-Production")
 ```
