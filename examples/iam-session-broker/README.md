@@ -36,7 +36,7 @@ Feature: Tenant isolation
 ## Architecture
 
 ### Technical flow
-![](system-architecture.png)
+![](/images/iam-session-broker-system-architecture.svg)
 
 1. Yellow user authenticates using Identity Provider and gets a JWT
 2. Yellow user accesses the Application with JWT to download Yellow data
@@ -67,7 +67,7 @@ We need to define IAM Session Broker components based on the technical flow.
 
 Create the following components:
 
-![](iam-session-broker-architecture.png)
+![](/images/iam-session-broker-application-architecture.svg)
 
 API Gateway should authorize requests and throttle if needed to prevent the “noisy neighbor” problem. API Gateway should proxy all authorized and non-throttled requests to API. API should 1/ fetch access metadata from Access Database 2/ call Temporary Security Credentials Provider to assume the Service Role 3/ call Temporary Security Credentials Provider using the Service Role credentials to assume the access role 4/ return the scoped temporary security credentials.
 
@@ -142,8 +142,8 @@ This approach supports cross-environment (account and Region) use cases by relyi
 * AWS CDK library version: `2.175.1`
 
 ### Git repositories
-* IAM Session Broker: https://github.com/applicationdesignframework/iam-session-broker
-* Identity Provider: https://github.com/applicationdesignframework/identity-provider
+* IAM Session Broker: [iam-session-broker](https://github.com/applicationdesignframework/iam-session-broker)
+* Identity Provider: [identity-provider](https://github.com/applicationdesignframework/identity-provider)
 
 ### Project structure
 

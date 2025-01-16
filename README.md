@@ -21,17 +21,37 @@ Component <sup>[4]</sup>:
 > Application boundary should evolve with organizational and software changes.
 
 ## Guidelines
-1. **Describe use case (Sales, Marketing, Product)** to clarify problem and solution. Describe business flow using [domain storytelling](https://domainstorytelling.org/quick-start-guide) and/or [event storming](https://en.wikipedia.org/wiki/Event_storming). Consider writing [press release/frequently asked questions (PR/FAQ)](https://www.aboutamazon.com/news/workplace/an-insider-look-at-amazons-culture-and-processes) narrative ([example](https://www.allthingsdistributed.com/2024/11/aws-lambda-turns-10-a-rare-look-at-the-doc-that-started-it.html)) or [pitch](https://basecamp.com/shapeup/1.5-chapter-06). Identify features, bounded contexts and external dependencies. Describe business requirements.
 
-2. **Define architecture (Product, Engineering)** to address business requirements. Define technical flow (e.g., load balancer &#8594; API &#8594; database) based on business flow. Use “fracture planes” <sup>[5]</sup> to help decide on application boundaries: 1/ profit and loss group 2/ business domain bounded context 3/ regulatory compliance 4/ change cadence 5/ team location 6/ risk 7/ performance isolation 8/ technology 9/ user personas. Consider the following integration dimensions <sup>[6]</sup>: 1/ service discovery (e.g., IP addresses, DNS) 2/ data format (e.g., binary, XML, JSON, protobuf, Avro) 3/ interaction type (e.g., sync, async) 4/ interaction style (e.g., messaging, RPC, query, GraphQL). Identify application boundaries and components. Define technical requirements.
+![](/images/adf-guidelines.svg)
 
-3. **Choose technologies (Engineering)** to address technical requirements. Consider building proof of concept (POC) for new technologies to validate feasibility. Review decisions based on the following pillars <sup>[7]</sup>: 1/ operational excellence 2/ security 3/ reliability 4/ performance efficiency 5/ cost optimization. Document decisions using [architectural decision records (ADRs)](https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/appendix.html).
+**Describe use case (Sales, Marketing, Product)** to clarify problem and solution. 
+* Describe business flow using [domain storytelling](https://domainstorytelling.org/quick-start-guide) and/or [event storming](https://en.wikipedia.org/wiki/Event_storming). 
+* Consider writing [press release/frequently asked questions (PR/FAQ)](https://www.aboutamazon.com/news/workplace/an-insider-look-at-amazons-culture-and-processes) narrative ([example](https://www.allthingsdistributed.com/2024/11/aws-lambda-turns-10-a-rare-look-at-the-doc-that-started-it.html)) or [pitch](https://basecamp.com/shapeup/1.5-chapter-06). 
+* Identify features, bounded contexts and external dependencies. 
+* Describe business requirements.
 
-4. **Write stories (Product, Engineering)** to scope implementation. Use the following story types: 1/ User Story – “As a [type of user] I [want this thing] so that [I can accomplish this goal]” (e.g., “As a site visitor, I want to see new content when I come to the site, so I come back more often”) 2/ Job Story – “When [situation], I want to [motivation], so I can [expected outcome]” (e.g., “When it’s dinner time tonight, I want to have pizza so I can easily feed my friends”) 3/ Feature-Driven Development (FDD) – “[action] the [result] [by/for/of/to] a(n) [object]” (e.g., “Generate a unique identifier for a transaction”). Map stories to features.
+**Define architecture (Product, Engineering)** to address business requirements. 
+* Define technical flow (e.g., load balancer &#8594; API &#8594; database) based on business flow. 
+* Use “fracture planes” <sup>[5]</sup> to help decide on application boundaries: 1/ profit and loss group 2/ business domain bounded context 3/ regulatory compliance 4/ change cadence 5/ team location 6/ risk 7/ performance isolation 8/ technology 9/ user personas. 
+* Consider the following integration dimensions <sup>[6]</sup>: 1/ service discovery (e.g., IP addresses, DNS) 2/ data format (e.g., binary, XML, JSON, protobuf, Avro) 3/ interaction type (e.g., sync, async) 4/ interaction style (e.g., messaging, RPC, query, GraphQL). 
+* Identify application boundaries and components. 
+* Define technical requirements.
 
-5. **Create one or more repositories and a single pipeline per application (Engineering)** to reduce blast radius and increase delivery performance.
+**Choose technologies (Engineering)** to address technical requirements. 
+* Consider building proof of concept (POC) for new technologies to validate feasibility. 
+* Review decisions based on the following pillars <sup>[7]</sup>: 1/ operational excellence 2/ security 3/ reliability 4/ performance efficiency 5/ cost optimization. 
+* Document decisions using [architectural decision records (ADRs)](https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/appendix.html).
 
-6. **Organize resources configuration and business logic code by application components (Engineering)** to align architecture with code.
+**Write stories (Product, Engineering)** to scope implementation. 
+* Use the following story types:
+  * User Story – "As a [type of user] I [want this thing] so that [I can accomplish this goal]". Example: "As a site visitor, I want to see new content when I come to the site, so I come back more often".
+  * Job Story – "When [situation], I want to [motivation], so I can [expected outcome]". Example: "When it’s dinner time tonight, I want to have pizza so I can easily feed my friends".
+  * Feature-Driven Development (FDD) – "[action] the [result] [by/for/of/to] a(n) [object]". Example: "Generate a unique identifier for a transaction". 
+* Map stories to features.
+
+**Create one or more repositories and a single pipeline per application (Engineering)** to reduce blast radius and increase delivery performance.
+
+**Organize resources configuration and business logic code by application components (Engineering)** to align architecture with code.
 
 ## Examples
 * [High-level application design from use case to code](examples/application-design/README.md)

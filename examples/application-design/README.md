@@ -5,10 +5,10 @@
 Offer virtual machines (instances) as a service.
 
 ### Business flow
-![](https://github.com/alexpulver/adf/assets/4362270/e39e7d4c-aea3-4130-b1b8-60da4187745c)
+![](/images/ec2-use-case.svg)
 
 ## Features and stories
-Instance type with Intel CPU and local NVMe storage
+Instance type with Intel CPU and NVMe SSD instance store volumes
 * As a developer, I want to launch an instance
 * As a developer, I want to stop an instance
 * As a developer, I want to delete an instance
@@ -21,7 +21,7 @@ Requirements are not described in this example for brevity.
 ## Architecture
 
 ### Technical flow
-![](https://github.com/alexpulver/adf/assets/4362270/2108fb96-a317-4498-8db5-8ba7005fc17a)
+![](/images/ec2-system-architecture.svg)
 
 ### Application boundaries
 **Context**
@@ -44,7 +44,7 @@ We need to define EC2 Instances Console components based on the technical flow.
 
 _EC2 Instances Console_ application contains _Toolchain_ and _Service_ components. _Toolchain_ component contains _Deployment Pipeline_ and _Pull Request Build_ components. _Service_ component contains _Network_, _Ingress_, _UI_, _Database_ and _Monitoring_ components. _Toolchain_ and _Service_ resources deploy as a stack each.
 
-![](https://github.com/user-attachments/assets/daf03e38-5eea-4392-b4cd-17ad7ea5b885)
+![](/images/ec2-application-architecture.svg)
 
 **Consequences**
 
@@ -56,7 +56,7 @@ We need to choose technologies to implement EC2 Instances Console components.
 
 **Decision**
 
-![](https://github.com/user-attachments/assets/13285ca5-f7aa-465f-b587-86b781b09834)
+![](/images/ec2-technology-selection.svg)
 
 **Consequences**
 
