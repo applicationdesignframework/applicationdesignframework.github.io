@@ -1,7 +1,7 @@
 # Application Design Framework (ADF)
 
 ## Purpose
-Reduce lead time by bridging product-to-engineering gaps.
+Reduce lead time by bridging product-engineering gaps.
 
 ## Definitions
 Application boundary <sup>[1]</sup>:
