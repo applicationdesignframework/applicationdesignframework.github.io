@@ -32,9 +32,8 @@ Component <sup>[4]</sup>:
 
 **Define architecture (Product, Engineering)** to address business and define technical requirements. 
 * Define technical flow (e.g., load balancer &#8594; API &#8594; database) based on business flow. 
-* Use “fracture planes” <sup>[5]</sup> to help decide on application boundaries: 1/ profit and loss group 2/ business domain bounded context 3/ regulatory compliance 4/ change cadence 5/ team location 6/ risk 7/ performance isolation 8/ technology 9/ user personas. 
 * Consider the following integration dimensions <sup>[6]</sup>: 1/ service discovery (e.g., IP addresses, DNS) 2/ data format (e.g., binary, XML, JSON, protobuf, Avro) 3/ interaction type (e.g., sync, async) 4/ interaction style (e.g., messaging, RPC, query, GraphQL). 
-* Identify application boundaries and components. 
+* Identify application boundaries and components. Use “fracture planes” <sup>[5]</sup> to help decide on application boundaries: 1/ profit and loss group 2/ business domain bounded context 3/ regulatory compliance 4/ change cadence 5/ team location 6/ risk 7/ performance isolation 8/ technology 9/ user personas.
 * Document technical requirements.
 
 **Choose technologies (Engineering)** to address technical requirements. 
@@ -43,7 +42,7 @@ Component <sup>[4]</sup>:
 * Document decisions using [architectural decision records (ADRs)](https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/appendix.html).
 
 **Write stories (Product, Engineering)** to scope implementation. 
-* Use the following story types <sup>[8]</sup>:
+* Consider the following story types <sup>[8]</sup>:
   * User Story – "As a [type of user] I [want this thing] so that [I can accomplish this goal]". Example: "As a site visitor, I want to see new content when I come to the site, so I come back more often".
   * Job Story – "When [situation], I want to [motivation], so I can [expected outcome]". Example: "When it’s dinner time tonight, I want to have pizza so I can easily feed my friends".
   * Feature-Driven Development (FDD) – "[action] the [result] [by/for/of/to] a(n) [object]". Example: "Generate a unique identifier for a transaction". 
