@@ -24,7 +24,7 @@ Component <sup>[4]</sup>:
 
 ![](/images/adf-guidelines.svg)
 
-**Describe use case (Sales, Marketing, Product)** to clarify problem and describe business requirements. 
+**Describe use case (Sales, Marketing, Product)** to clarify the problem and define business requirements. 
 * Describe business flow using [domain storytelling](https://domainstorytelling.org/quick-start-guide) and/or [event storming](https://en.wikipedia.org/wiki/Event_storming). 
 * Consider writing [press release/frequently asked questions (PR/FAQ)](https://www.aboutamazon.com/news/workplace/an-insider-look-at-amazons-culture-and-processes) narrative ([example](https://www.allthingsdistributed.com/2024/11/aws-lambda-turns-10-a-rare-look-at-the-doc-that-started-it.html)) or [pitch](https://basecamp.com/shapeup/1.5-chapter-06). 
 * Identify features, bounded contexts and external dependencies. 
