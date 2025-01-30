@@ -24,18 +24,18 @@ Component <sup>[4]</sup>:
 
 ![](/images/adf-guidelines.svg)
 
-**Describe use case (Sales, Marketing, Product)** to clarify problem and solution. 
+**Describe use case (Sales, Marketing, Product)** to clarify problem and describe business requirements. 
 * Describe business flow using [domain storytelling](https://domainstorytelling.org/quick-start-guide) and/or [event storming](https://en.wikipedia.org/wiki/Event_storming). 
 * Consider writing [press release/frequently asked questions (PR/FAQ)](https://www.aboutamazon.com/news/workplace/an-insider-look-at-amazons-culture-and-processes) narrative ([example](https://www.allthingsdistributed.com/2024/11/aws-lambda-turns-10-a-rare-look-at-the-doc-that-started-it.html)) or [pitch](https://basecamp.com/shapeup/1.5-chapter-06). 
 * Identify features, bounded contexts and external dependencies. 
-* Describe business requirements.
+* Document business requirements.
 
-**Define architecture (Product, Engineering)** to address business requirements. 
+**Define architecture (Product, Engineering)** to address business and define technical requirements. 
 * Define technical flow (e.g., load balancer &#8594; API &#8594; database) based on business flow. 
 * Use “fracture planes” <sup>[5]</sup> to help decide on application boundaries: 1/ profit and loss group 2/ business domain bounded context 3/ regulatory compliance 4/ change cadence 5/ team location 6/ risk 7/ performance isolation 8/ technology 9/ user personas. 
 * Consider the following integration dimensions <sup>[6]</sup>: 1/ service discovery (e.g., IP addresses, DNS) 2/ data format (e.g., binary, XML, JSON, protobuf, Avro) 3/ interaction type (e.g., sync, async) 4/ interaction style (e.g., messaging, RPC, query, GraphQL). 
 * Identify application boundaries and components. 
-* Define technical requirements.
+* Document technical requirements.
 
 **Choose technologies (Engineering)** to address technical requirements. 
 * Consider building proof of concept (POC) for new technologies to validate feasibility. 
@@ -49,9 +49,9 @@ Component <sup>[4]</sup>:
   * Feature-Driven Development (FDD) – "[action] the [result] [by/for/of/to] a(n) [object]". Example: "Generate a unique identifier for a transaction". 
 * Map stories to features.
 
-**Create one or more repositories and a single pipeline per application (Engineering)** to reduce blast radius and increase delivery performance.
-
-**Organize resources configuration and business logic code by application components (Engineering)** to align architecture with code.
+**Write code (Engineering)** to implement business and technical requirements.
+* Create one or more repositories and a single pipeline per application to reduce blast radius and increase delivery performance.
+* Organize resources configuration and business logic code by application components to align architecture with code.
 
 ## Examples
 * [High-level application design from use case to code](examples/application-design/README.md)
