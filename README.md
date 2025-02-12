@@ -30,23 +30,24 @@ Component <sup>[4]</sup>:
 * Identify features, bounded contexts and external dependencies. 
 * Document business requirements.
 
-**Define architecture (Product, Engineering)** to address business and define technical requirements. 
-* Define technical flow (e.g., load balancer &#8594; API &#8594; database) based on business flow. 
-* Consider the following integration dimensions <sup>[5]</sup>: 1/ service discovery (e.g., IP addresses, DNS) 2/ data format (e.g., binary, XML, JSON, protobuf, Avro) 3/ interaction type (e.g., sync, async) 4/ interaction style (e.g., messaging, RPC, query, GraphQL). 
-* Identify application boundaries and components. Use “fracture planes” <sup>[6]</sup> to help decide on application boundaries: 1/ profit and loss group 2/ business domain bounded context 3/ regulatory compliance 4/ change cadence 5/ team location 6/ risk 7/ performance isolation 8/ technology 9/ user personas.
-* Document technical requirements.
-
-**Choose technologies (Engineering)** to address technical requirements. 
-* Consider building proof of concept (POC) for new technologies to validate feasibility. 
-* Review decisions based on the following pillars <sup>[7]</sup>: 1/ operational excellence 2/ security 3/ reliability 4/ performance efficiency 5/ cost optimization. 
-* Document decisions using [architectural decision records (ADRs)](https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/appendix.html).
-
 **Write stories (Product, Engineering)** to scope implementation. 
-* Consider the following story types <sup>[8]</sup>:
+* Consider the following story types <sup>[5]</sup>:
   * User Story – "As a [type of user] I [want this thing] so that [I can accomplish this goal]". Example: "As a site visitor, I want to see new content when I come to the site, so I come back more often".
   * Job Story – "When [situation], I want to [motivation], so I can [expected outcome]". Example: "When it’s dinner time tonight, I want to have pizza so I can easily feed my friends".
   * Feature-Driven Development (FDD) – "[action] the [result] [by/for/of/to] a(n) [object]". Example: "Generate a unique identifier for a transaction". 
 * Map stories to features.
+
+**Define architecture (Product, Engineering)** to address business and define technical requirements. 
+* Define technical flow (e.g., load balancer &#8594; API &#8594; database) based on business flow. 
+* Consider the following integration dimensions <sup>[6]</sup>: 1/ service discovery (e.g., IP addresses, DNS) 2/ data format (e.g., binary, XML, JSON, protobuf, Avro) 3/ interaction type (e.g., sync, async) 4/ interaction style (e.g., messaging, RPC, query, GraphQL). 
+* Identify application boundaries and components. Use “fracture planes” <sup>[7]</sup> to help decide on application boundaries: 1/ profit and loss group 2/ business domain bounded context 3/ regulatory compliance 4/ change cadence 5/ team location 6/ risk 7/ performance isolation 8/ technology 9/ user personas.
+* Document technical requirements.
+
+**Choose technologies (Engineering)** to address technical requirements. 
+* Consider building proof of concept (POC) for new technologies to validate feasibility. 
+* Review decisions based on the following pillars <sup>[8]</sup>: 1/ operational excellence 2/ security 3/ reliability 4/ performance efficiency 5/ cost optimization. 
+* Document decisions using [architectural decision records (ADRs)](https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/appendix.html).
+* Update stories scope and estimates based on architecture and technologies.
 
 **Write code (Engineering)** to implement business and technical requirements.
 * Create one or more repositories and a single pipeline per application to reduce blast radius and increase delivery performance.
@@ -80,7 +81,7 @@ Component <sup>[4]</sup>:
 2. AWS Well-Architected Framework - [Definitions](https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html)
 3. Neal Ford and Mark Richards - [Software Architecture: the Hard Parts](https://www.infoq.com/podcasts/software-architecture-hard-parts/)
 4. Martin Fowler - [SoftwareComponent](https://martinfowler.com/bliki/SoftwareComponent.html)
-5. Gregor Hohpe - [The Many Facets of Coupling](https://www.enterpriseintegrationpatterns.com/ramblings/coupling_facets.html)
-6. Matthew Skelton - [Designing organizations for responsiveness](https://blog.matthewskelton.net/2017/11/07/designing-organisations-for-responsiveness/#more-2053)
-7. AWS Well-Architected Framework - [Pillars](https://docs.aws.amazon.com/wellarchitected/latest/framework/the-pillars-of-the-framework.html)
-8. Martin Fowler - [User Story](https://martinfowler.com/bliki/UserStory.html)
+5. Martin Fowler - [User Story](https://martinfowler.com/bliki/UserStory.html)
+6. Gregor Hohpe - [The Many Facets of Coupling](https://www.enterpriseintegrationpatterns.com/ramblings/coupling_facets.html)
+7. Matthew Skelton - [Designing organizations for responsiveness](https://blog.matthewskelton.net/2017/11/07/designing-organisations-for-responsiveness/#more-2053)
+8. AWS Well-Architected Framework - [Pillars](https://docs.aws.amazon.com/wellarchitected/latest/framework/the-pillars-of-the-framework.html)
