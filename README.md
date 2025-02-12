@@ -38,7 +38,7 @@ Component <sup>[4]</sup>:
 * Map stories to features.
 
 **Define architecture (Product, Engineering)** to address business and define technical requirements. 
-* Define technical flow (e.g., load balancer &#8594; API &#8594; database) based on business flow. 
+* Define technical flow (e.g., load balancer &#8594; API &#8594; database) based on business flow and stories. 
 * Consider the following integration dimensions <sup>[6]</sup>: 1/ service discovery (e.g., IP addresses, DNS) 2/ data format (e.g., binary, XML, JSON, protobuf, Avro) 3/ interaction type (e.g., sync, async) 4/ interaction style (e.g., messaging, RPC, query, GraphQL). 
 * Identify application boundaries and components. Use “fracture planes” <sup>[7]</sup> to help decide on application boundaries: 1/ profit and loss group 2/ business domain bounded context 3/ regulatory compliance 4/ change cadence 5/ team location 6/ risk 7/ performance isolation 8/ technology 9/ user personas.
 * Document technical requirements.
