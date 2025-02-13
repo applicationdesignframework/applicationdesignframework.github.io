@@ -9,8 +9,9 @@ A multi-tenant SaaS offering composes multiple applications. Applications use a 
 * Yellow user downloads Yellow data
 
 ## Features and stories
-Feature: Tenant isolation
-* Job story: Scope the user access to their tenant’s boundary
+Feature: Temporary credentials for applications
+* Job story: Allow applications to self-register and de-register
+* Job story: Generate temporary credentials scoped to user tenant boundary
 
 ## Requirements
 
