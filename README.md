@@ -5,9 +5,9 @@ Is your organization struggling to ship software on-time, on-budget, and in-line
 
 ## Definitions
 Application boundary <sup>[1]</sup>:
-* A **body of code** that's seen by developers as a single unit
-* A **group of functionality** that business customers see as a single unit
-* An **initiative** that those with the money see as a single budget
+* A **body of code** that's seen by developers as a single unit.
+* A **group of functionality** that business customers see as a single unit.
+* An **initiative** that those with the money see as a single budget.
 
 Architecture <sup>[2][3]</sup>:
 * An **architecture** describes how components work together. How components communicate and interact is often the focus of architecture diagrams. 
