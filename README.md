@@ -31,39 +31,18 @@ Component <sup>[4]</sup>:
 * Document business requirements.
 
 **Write stories (Product, Engineering)** to scope implementation. 
-* Consider the following story types <sup>[5]</sup>:
-  * User Story – "As a [type of user] I [want this thing] so that [I can accomplish this goal]". Example: "As a site visitor, I want to see new content when I come to the site, so I come back more often".
-  * Job Story – "When [situation], I want to [motivation], so I can [expected outcome]". Example: "When it’s dinner time tonight, I want to have pizza so I can easily feed my friends".
-  * Feature-Driven Development (FDD) – "[action] the [result] [by/for/of/to] a(n) [object]". Example: "Generate a unique identifier for a transaction". 
+* Consider the following story types <sup>[5]</sup>: 1/ user story – "as a [type of user] I [want this thing] so that [I can accomplish this goal]" (e.g., "as a site visitor, I want to see new content when I come to the site, so I come back more often") 2/ job story – "when [situation], I want to [motivation], so I can [expected outcome]" (e.g., "when it’s dinner time tonight, I want to have pizza so I can easily feed my friends" 3/ feature-driven development – "[action] the [result] [by/for/of/to] a(n) [object]" (e.g., "generate a unique identifier for a transaction").
 * Map stories to features.
 
 **Define architecture (Product, Engineering)** to address business and define technical requirements. 
 * Define technical flow (e.g., load balancer &#8594; API &#8594; database) based on business flow and stories. 
-* Consider the following integration dimensions <sup>[6]</sup>:
-  * Service discovery (e.g., IP addresses, DNS)
-  * Data format (e.g., binary, XML, JSON, protobuf, Avro)
-  * Interaction type (e.g., sync, async)
-  * Interaction style (e.g., messaging, RPC, query, GraphQL)
-* Identify application boundaries and components. Use “fracture planes” <sup>[7]</sup> to help decide on application boundaries:
-  * Profit and loss group
-  * Business domain bounded context
-  * Regulatory compliance
-  * Change cadence
-  * Team location
-  * Risk
-  * Performance isolation
-  * Technology
-  * User personas
+* Consider the following integration dimensions <sup>[6]</sup>: 1/ service discovery (e.g., IP addresses, DNS) 2/ data format (e.g., binary, XML, JSON, protobuf, Avro) 3/ interaction type (e.g., sync, async) 4/ interaction style (e.g., messaging, RPC, query, GraphQL).
+* Identify application boundaries and components. Use “fracture planes” <sup>[7]</sup> to help decide on application boundaries: 1/ profit and loss group 2/ business domain bounded context 3/ regulatory compliance 4/ change cadence 5/ team location 6/ risk 7/ performance isolation 8/ technology 9/ user personas.
 * Document technical requirements.
 
 **Choose technologies (Engineering)** to address technical requirements. 
 * Consider building proof of concept (POC) for new technologies to validate feasibility. 
-* Review decisions based on the following pillars <sup>[8]</sup>:
-  * Operational excellence
-  * Security
-  * Reliability
-  * Performance efficiency
-  * Cost optimization
+* Review decisions based on the following pillars <sup>[8]</sup>: 1/ operational excellence 2/ security 3/ reliability 4/ performance efficiency 5/ cost optimization.
 * Document decisions using [architectural decision records (ADRs)](https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/appendix.html).
 * Update stories scope and estimates based on architecture and technologies.
 
@@ -82,11 +61,14 @@ Component <sup>[4]</sup>:
 
 ## Related frameworks
 * [AWS Well-Architected Framework](https://aws.amazon.com/architecture/well-architected/) - apply architectural best practices for designing and operating reliable, secure, efficient, cost-effective, and sustainable systems.
+* [Google Cloud Architecture Framework](https://cloud.google.com/architecture/framework) - recommendations to help architects, developers, administrators, and other cloud practitioners design and operate a cloud topology that's secure, efficient, resilient, high-performing, and cost-effective.
+* [Azure Well-Architected Framework](https://learn.microsoft.com/en-us/azure/well-architected/) - a set of quality-driven tenets, architectural decision points, and review tools intended to help solution architects build a technical foundation for their workloads.
 * [Operational Readiness Review](https://docs.aws.amazon.com/wellarchitected/latest/operational-readiness-reviews/wa-operational-readiness-reviews.html) - ensure a consistent review of operational readiness, with a specific focus on eliminating known, common causes of impact
 
 ## Related guidance
 * [Awesome Architecture](https://github.com/alexpulver/awesome-architecture) - concepts and foundations, followed by jobs-to-be-done
-* [AWS Decision Guides](https://aws.amazon.com/getting-started/decision-guides/) - choose the AWS services that might be right for you and your use cases
+* [AWS Decision Guides](https://aws.amazon.com/getting-started/decision-guides/) - choose AWS services that might be right for you and your use cases
+* [Azure Decision Guides](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/decision-guides/) - choose Azure services that might be right for you and your use cases
 
 ## Ongoing research
 * A mechanism for introducing ADF into organization (inputs, tools, adoption, inspection, iteration, outputs).
