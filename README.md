@@ -63,12 +63,12 @@ Component <sup>[4]</sup>:
 * [AWS Well-Architected Framework](https://aws.amazon.com/architecture/well-architected/) - apply architectural best practices for designing and operating reliable, secure, efficient, cost-effective, and sustainable systems.
 * [Google Cloud Architecture Framework](https://cloud.google.com/architecture/framework) - recommendations to help architects, developers, administrators, and other cloud practitioners design and operate a cloud topology that's secure, efficient, resilient, high-performing, and cost-effective.
 * [Azure Well-Architected Framework](https://learn.microsoft.com/en-us/azure/well-architected/) - a set of quality-driven tenets, architectural decision points, and review tools intended to help solution architects build a technical foundation for their workloads.
-* [Operational Readiness Review](https://docs.aws.amazon.com/wellarchitected/latest/operational-readiness-reviews/wa-operational-readiness-reviews.html) - ensure a consistent review of operational readiness, with a specific focus on eliminating known, common causes of impact
+* [Operational Readiness Review](https://docs.aws.amazon.com/wellarchitected/latest/operational-readiness-reviews/wa-operational-readiness-reviews.html) - ensure a consistent review of operational readiness, with a specific focus on eliminating known, common causes of impact.
 
 ## Related guidance
-* [Awesome Architecture](https://github.com/alexpulver/awesome-architecture) - concepts and foundations, followed by jobs-to-be-done
-* [AWS Decision Guides](https://aws.amazon.com/getting-started/decision-guides/) - choose AWS services that might be right for you and your use cases
-* [Azure Decision Guides](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/decision-guides/) - choose Azure services that might be right for you and your use cases
+* [Awesome Architecture](https://github.com/alexpulver/awesome-architecture) - concepts and foundations, followed by jobs-to-be-done.
+* [AWS Decision Guides](https://aws.amazon.com/getting-started/decision-guides/) - choose AWS services that might be right for you and your use cases.
+* [Azure Decision Guides](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/decision-guides/) - choose Azure services that might be right for you and your use cases.
 
 ## Ongoing research
 * A mechanism for introducing ADF into organization (inputs, tools, adoption, inspection, iteration, outputs).
