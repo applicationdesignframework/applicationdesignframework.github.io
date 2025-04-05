@@ -1,12 +1,12 @@
 # IAM Session Broker application
 
 ## Use case
-A multi-tenant SaaS offering composes multiple applications. Applications use a shared IAM Session Broker library to scope user access to their tenant’s boundary. SaaS provider wants to build a shared IAM Session Broker application instead to reduce operational overhead and improve security posture. The application should initially support the ABAC authorization strategy.
+A multi-tenant SaaS offering composes multiple applications. Today, the applications use an IAM Session Broker library to scope user access to their tenant’s boundary. The SaaS provider wants to build an IAM Session Broker service instead to reduce operational overhead and improve security posture. The service should initially support ABAC authorization strategy.
 
 ### Business flow
-* SaaS admin registers users for Yellow and Blue tenants
-* Yellow user authenticates
-* Yellow user downloads Yellow data
+* SaaS admin registers users for Yellow and Blue tenants.
+* Yellow user authenticates.
+* Yellow user downloads Yellow data.
 
 ## Features and stories
 Feature: Temporary credentials for applications
@@ -15,37 +15,42 @@ Feature: Temporary credentials for applications
 
 ## Requirements
 
+### Definitions
+* Application service principal: A principal application uses to interact with the IAM Session Broker service.
+* Application access principal: A principal application uses to interact with its data.
+* IAM Session Broker service principal: A principal IAM Session Broker service uses to provide scoped credentials for application access principal.
+
 ### Business
-* Require the applications to use ABAC with `${aws:PrincipalTag/`*`key`*`}` variable in policies for scoping access
+* Require the applications to use [ABAC](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_attribute-based-access-control.html) with `${aws:PrincipalTag/`*`key`*`}` variable in access principal policies to enforce tenant boundary.
 * Require the applications to register and provide the following access metadata:
-  * Access role name (e.g. `DocumentsAPIDataAccess`)
+  * Access principal role name (e.g. `AppAccess`)
   * Session tag key (e.g. `TenantID`)
   * JWT claim name (e.g. `custom:tenant_id`)
   * [JSON Web Key (JWK) Set URL](https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-using-tokens-verifying-a-jwt.html#amazon-cognito-user-pools-using-tokens-step-2) (e.g. `https://cognito-idp.<Region>.amazonaws.com/<userPoolId>/.well-known/jwks.json`)
-* Use the assumed-role session principal (service) role name for application name during registration
-* Authorize the registration requests for assumed-role session principals in the same account
-* Authorize the temporary security credentials requests for a registered application and a valid JWT
-* Validate the JWT by public keys in the registered application JWK Set URL
-* Return the scoped temporary security credentials by assuming the access role. Tag the session with the registered session tag key and JWT claim name value as the session tag key value.
+* Use application service principal role name as application name for registration.
+* Authorize registration requests for application service principals in the same account.
+* Authorize temporary security credentials requests for a registered application and a valid JWT.
+* Validate the provided JWT using public keys of the registered application JWK Set URL.
+* Return the scoped temporary security credentials by assuming the registered application access principal role. Tag the role session with the registered session tag key and JWT claim name value.
 
 ### Technical
-* Organize the access metadata by application name
-* Generate SDKs for multiple programming languages from service specification
-* Collect audit logs for security and compliance
-* Use AWS STS to request temporary security credentials
-* Cache the returned temporary security credentials to reduce latency
-* Throttle applications on tenant-level to protect against noisy-neighbor
+* Organize the access metadata by application name.
+* Generate SDKs for multiple programming languages from service specification.
+* Collect audit logs for security and compliance.
+* Use AWS STS to provide temporary security credentials.
+* Cache the returned temporary security credentials to reduce latency.
+* Throttle applications on tenant-level to protect against noisy-neighbor.
 
 ## Architecture
 
 ### Technical flow
 ![](/images/iam-session-broker-system-architecture.svg)
 
-1. Yellow user authenticates using Identity Provider and gets a JWT
-2. Yellow user accesses the Application with JWT to download Yellow data
-3. Application calls IAM Session Broker to acquire Yellow-scoped temporary security credentials
-4. IAM Session Broker verifies the JWT and returns Yellow-scoped temporary security credentials
-5. Application returns Yellow data to the user
+1. Yellow user authenticates using Identity Provider and gets a JWT.
+2. Yellow user accesses the Application with JWT to download Yellow data.
+3. Application calls IAM Session Broker to acquire Yellow-scoped temporary security credentials.
+4. IAM Session Broker verifies the JWT and returns Yellow-scoped temporary security credentials.
+5. Application returns Yellow data to the user.
 
 ### Application boundaries
 **Context**
@@ -72,7 +77,7 @@ Create the following components:
 
 ![](/images/iam-session-broker-application-architecture.svg)
 
-API Gateway should authorize requests and throttle if needed to prevent the “noisy neighbor” problem. API Gateway should proxy all authorized and non-throttled requests to API. API should 1/ fetch access metadata from Access Database 2/ call Temporary Security Credentials Provider to assume the Service Role 3/ call Temporary Security Credentials Provider using the Service Role credentials to assume the access role 4/ return the scoped temporary security credentials.
+API Gateway should authorize requests and throttle if needed to prevent the “noisy neighbor” problem. API Gateway should proxy all authorized and non-throttled requests to API. The API should: 1/ fetch access metadata from access database 2/ call temporary security credentials provider to get the service principal role credentials 3/ call temporary security credentials provider using the service principal role credentials to get the application access principal role credentials 4/ return the scoped application access principal role credentials.
 
 _API Gateway_
 
@@ -80,36 +85,37 @@ Use Amazon API Gateway HTTP API with [IAM authorization](https://docs.aws.amazon
 
 _API_
 
-Use Lambda function for compute and [Powertools for AWS Lambda (Python)](https://docs.powertools.aws.dev/lambda/python/latest/) for application. Use Lambda [provisioned concurrency](https://docs.aws.amazon.com/lambda/latest/dg/provisioned-concurrency.html) to reduce latency. Cache applications scoped temporary security credentials to further reduce latency.
+Use Lambda function for compute and [Powertools for AWS Lambda (Python)](https://docs.powertools.aws.dev/lambda/python/latest/) for application. Use Lambda [provisioned concurrency](https://docs.aws.amazon.com/lambda/latest/dg/provisioned-concurrency.html) to reduce latency. Cache scoped temporary security credentials to reduce latency.
 
 | Request | Description | Request body | Response |
 | ------- | ----------- | ------------ | -------- |
-| POST /applications | Register an application | {<br>&emsp;"AccessRoleName": "...",<br>&emsp;"SessionTagKey": "...",<br>&emsp;"JWTClaimName": "...",<br>&emsp;"JWKSetURL": "..."<br>} |  |
+| POST /applications | Register an application | {<br>&emsp;"AccessPrincipalRoleName": "...",<br>&emsp;"SessionTagKey": "...",<br>&emsp;"JWTClaimName": "...",<br>&emsp;"JWKSetURL": "..."<br>} |  |
 | GET /credentials?jwt=X | Return scoped temporary security credentials |  | {<br>&emsp;"AccessKeyId":"...",<br>&emsp;"SecretAccessKey":"...",<br>&emsp;"SessionToken":"..."<br>} |
 
 _Access Database_
 
 Use Amazon DynamoDB table. The table should store the registered access metadata.
 
-Data model (designed using [NoSQL WorkBench for DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/workbench.html)):
+Data model (designed using [NoSQL Workbench](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/workbench.html)):
 
-![Access Metadata data model](https://user-images.githubusercontent.com/4362270/231124010-d1d080e3-9a78-455f-a146-823d4bdd48d6.jpg)
+![](/images/iam-session-broker-access-database-model.png)
+([source](/models/iam-session-broker-access-database.json))
 
 _Temporary Security Credentials Provider_
 
 Use [AWS Session Token Service (AWS STS)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp.html). Other options include AWS IAM Roles Anywhere and AWS IoT Core credential provider. Choose AWS STS because there is currently no requirement to support on-premises applications and/or certificate-based authentication use cases.
 
-_Service Role_
+_Service Principal_
 
-Create `IAMSessionBroker` IAM role. Creating a dedicated Service Role enables flexibility for the IAM Session Broker architecture. Applications should trust the Service Role to assume their access role. The service role doesn’t have any permissions. Per requirements, applications and IAM Session Broker should be in the same account. The applications access role’s trust policy acts as an IAM resource-based policy. When a resource-based policy grants access to a principal in the same account, no additional identity-based policy is required ([documentation](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html)).
+Create `IAMSessionBroker` IAM role representing the service principal. Creating a dedicated service principal role enables flexibility for the IAM Session Broker architecture. Applications should trust the service principal role to assume their access principal role. The service principal role doesn’t have any permissions. Per requirements, applications and IAM Session Broker should be in the same account. The application access principal role trust policy is an IAM resource-based policy. When a resource-based policy grants access to a principal in the same account, no additional identity-based policy is required for the principal role ([documentation](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html)).
 
-*Note:* Applications access role trust policy uses the `IAMSessionBroker` role ID once saved. Deleting or altering the `IAMSessionBroker` role will require applications to update their access role’s trust policy to apply the new `IAMSessionBroker` role ID.
+*Note:* Application access principal role trust policy uses the `IAMSessionBroker` role ID once saved. Deleting or altering the `IAMSessionBroker` role will require applications to update their access principal role trust policy to apply the new `IAMSessionBroker` role ID.
 
 **Consequences**
 
 To support cross-account scenarios, we would need to replace API Gateway HTTP API by API Gateway REST API, because HTTP API [doesn’t support](https://aws.amazon.com/premiumsupport/knowledge-center/api-gateway-iam-cross-account/) resource policies at the time of this writing.
 
-API uses [role chaining](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html#iam-term-role-chaining): 1/ assume Service Role 2/ assume application access role. Role chaining limits the role session to a maximum of one hour. In the worst case scenario, the API will need to call Temporary Security Credentials Provider (AWS STS) every hour for a specific application.
+API uses [role chaining](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html#iam-term-role-chaining): 1/ get service principal role credentials 2/ get application access principal role credentials. Role chaining limits the role session to a maximum of one hour. In the worst case scenario, the API will need to call temporary security credentials provider (AWS STS) every hour for the related application.
 
 ### Service discovery
 
@@ -130,8 +136,6 @@ Example:
 ```
 iam-session-broker.eu-west-1.gamma.saas-platform.example.com
 ```
-
-Delegate the product sub-domain to a dedicated AWS account so that each product team can manage DNS zones for their applications. Using the above approach, applications can construct the IAM Session Broker API endpoint at deployment time.
 
 **Consequences**
 
@@ -162,7 +166,7 @@ service/
     compute.py
   access_database.py
   api_gateway.py
-  service_role.py
+  service_principal.py
   service_stack.py
 contstants.py
 main.py  # Resources configuration application - AWS CDK
