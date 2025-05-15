@@ -168,7 +168,7 @@ service/
   api_gateway.py
   service_principal.py
   service_stack.py
-contstants.py
+constants.py
 main.py  # Resources configuration application - AWS CDK
 ```
 
