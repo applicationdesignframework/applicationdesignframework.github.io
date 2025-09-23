@@ -28,7 +28,7 @@ Component <sup>[4]</sup>:
 * Describe business flow using [domain storytelling](https://domainstorytelling.org/quick-start-guide) and/or [event storming](https://en.wikipedia.org/wiki/Event_storming). 
 * Consider writing [press release/frequently asked questions (PR/FAQ)](https://www.aboutamazon.com/news/workplace/an-insider-look-at-amazons-culture-and-processes) narrative ([example](https://www.allthingsdistributed.com/2024/11/aws-lambda-turns-10-a-rare-look-at-the-doc-that-started-it.html)) or [pitch](https://basecamp.com/shapeup/1.5-chapter-06). 
 * Identify features, bounded contexts and external dependencies. 
-* Document business requirements.
+* Document business requirements using [EARS](https://alistairmavin.com/ears/) patterns: "while [optional pre-condition], when [optional trigger], the [system name] shall [system response]" (e.g., "while the user is signed-in, when the user asks to change the password, the application shall re-authenticate the user").
 
 **Write stories (Product, Engineering)** to scope implementation. 
 * Consider the following story types <sup>[5]</sup>: 1/ user story – "as a [type of user] I [want this thing] so that [I can accomplish this goal]" (e.g., "as a site visitor, I want to see new content when I come to the site, so I come back more often") 2/ job story – "when [situation], I want to [motivation], so I can [expected outcome]" (e.g., "when it’s dinner time tonight, I want to have pizza so I can easily feed my friends" 3/ feature-driven development – "[action] the [result] [by/for/of/to] a(n) [object]" (e.g., "generate a unique identifier for a transaction").
@@ -38,7 +38,7 @@ Component <sup>[4]</sup>:
 * Define technical flow (e.g., load balancer &#8594; API &#8594; database) based on business flow and stories. 
 * Consider the following integration dimensions <sup>[6]</sup>: 1/ service discovery (e.g., IP addresses, DNS) 2/ data format (e.g., binary, XML, JSON, protobuf, Avro) 3/ interaction type (e.g., sync, async) 4/ interaction style (e.g., messaging, RPC, query, GraphQL).
 * Identify application boundaries and components. Use “fracture planes” <sup>[7]</sup> to help decide on application boundaries: 1/ profit and loss group 2/ business domain bounded context 3/ regulatory compliance 4/ change cadence 5/ team location 6/ risk 7/ performance isolation 8/ technology 9/ user personas.
-* Document technical requirements.
+* Document technical requirements using [EARS](https://alistairmavin.com/ears/) patterns: "while [optional pre-condition], when [optional trigger], the [system name] shall [system response]" (e.g., "while the deployment pipeline is running, when there is a change to the pipeline structure, the pipeline shall stop and restart with the new structure").
 
 **Choose technologies (Engineering)** to address technical requirements. 
 * Consider building proof of concept (POC) for new technologies to validate feasibility. 
