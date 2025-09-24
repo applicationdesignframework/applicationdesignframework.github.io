@@ -46,8 +46,6 @@ We need to define application boundaries.
 
 The decision is to create two applications: _EC2 Instances Console_ and _EC2 Instances Control Plane_. 
 
-**Consequences**
-
 #### EC2 Instances Console components
 
 **Context**
@@ -60,8 +58,6 @@ _EC2 Instances Console_ application contains _Toolchain_ and _Service_ component
 
 ![](/images/ec2-application-architecture.svg)
 
-**Consequences**
-
 #### EC2 Instances Console technologies
 
 **Context**
@@ -72,9 +68,6 @@ We need to choose technologies to implement EC2 Instances Console components.
 
 ![](/images/ec2-application-technology.svg)
 
-**Consequences**
-
-
 #### EC2 Instances Control Plane components
 
 **Context**
@@ -84,8 +77,6 @@ We need to define EC2 Instances Control Plane components based on the technical 
 **Decision**
 
 _EC2 Instances Control Plane_ is not described in this example for brevity.
-
-**Consequences**
 
 ## Code
 

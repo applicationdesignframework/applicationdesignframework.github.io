@@ -65,7 +65,7 @@ Definitions:
 2. Yellow user accesses the Application with the JWT to download Yellow data.
 3. Application sends Yellow tenant JWT to IAM Session Broker.
 4. IAM Session Broker verifies the JWT, assumes the application access principal role, and returns Yellow-scoped temporary security credentials.
-* Application uses the Yellow-scoped temporary security credentials to return the data.
+5. Application uses the Yellow-scoped temporary security credentials to return the data.
 
 **Requirements**
 1. Generate SDKs for multiple programming languages from service specification.
