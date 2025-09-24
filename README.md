@@ -18,33 +18,33 @@ Component <sup>[4]</sup>:
 ## Mindset
 > Application is an ownership boundary.
 
-> Application boundary should evolve with organizational and software changes.
+> Application boundary may change over time.
+
+> Estimates are more accurate after choosing technologies.
 
 ## Guidelines
 
 ![](/images/adf-guidelines.svg)
 
 **Describe use case (Sales, Marketing, Product)** to clarify the problem and define business requirements. 
-* Describe business flow using [domain storytelling](https://domainstorytelling.org/quick-start-guide) and/or [event storming](https://en.wikipedia.org/wiki/Event_storming). 
-* Consider writing [press release/frequently asked questions (PR/FAQ)](https://www.aboutamazon.com/news/workplace/an-insider-look-at-amazons-culture-and-processes) narrative ([example](https://www.allthingsdistributed.com/2024/11/aws-lambda-turns-10-a-rare-look-at-the-doc-that-started-it.html)) or [pitch](https://basecamp.com/shapeup/1.5-chapter-06). 
-* Identify features, bounded contexts and external dependencies. 
+* Describe business flows using [domain storytelling](https://domainstorytelling.org/quick-start-guide), [story maps](https://www.mountaingoatsoftware.com/blog/user-story-mapping-how-to-create-story-maps), or [event storming](https://en.wikipedia.org/wiki/Event_storming). 
+* Consider writing [press release/frequently asked questions (PR/FAQ)](https://www.aboutamazon.com/news/workplace/an-insider-look-at-amazons-culture-and-processes) narrative ([example](https://www.allthingsdistributed.com/2024/11/aws-lambda-turns-10-a-rare-look-at-the-doc-that-started-it.html)) or [pitch](https://basecamp.com/shapeup/1.5-chapter-06).
+* Consider the following story types for story maps [5]: 1/ user story – "as a [type of user] I [want this thing] so that [I can accomplish this goal]" (e.g., "as a site visitor, I want to see new content when I come to the site, so I come back more often") 2/ job story – "when [situation], I want to [motivation], so I can [expected outcome]" (e.g., "when it’s dinner time tonight, I want to have pizza so I can easily feed my friends" 3/ feature-driven development – "[action] the [result] [by/for/of/to] a(n) [object]" (e.g., "generate a unique identifier for a transaction").
+* Identify bounded contexts and external dependencies.
 * Document business requirements using [EARS](https://alistairmavin.com/ears/) patterns: "while [optional pre-condition], when [optional trigger], the [system name] shall [system response]" (e.g., "while the user is signed-in, when the user asks to change the password, the application shall re-authenticate the user").
 
-**Write stories (Product, Engineering)** to scope implementation. 
-* Consider the following story types <sup>[5]</sup>: 1/ user story – "as a [type of user] I [want this thing] so that [I can accomplish this goal]" (e.g., "as a site visitor, I want to see new content when I come to the site, so I come back more often") 2/ job story – "when [situation], I want to [motivation], so I can [expected outcome]" (e.g., "when it’s dinner time tonight, I want to have pizza so I can easily feed my friends" 3/ feature-driven development – "[action] the [result] [by/for/of/to] a(n) [object]" (e.g., "generate a unique identifier for a transaction").
-* Map stories to features.
-
 **Define architecture (Product, Engineering)** to address business and define technical requirements. 
-* Define technical flow (e.g., load balancer &#8594; API &#8594; database) based on business flow and stories. 
+* Define technical flows (e.g., load balancer &#8594; API &#8594; database) based on business flows. 
 * Consider the following integration dimensions <sup>[6]</sup>: 1/ service discovery (e.g., IP addresses, DNS) 2/ data format (e.g., binary, XML, JSON, protobuf, Avro) 3/ interaction type (e.g., sync, async) 4/ interaction style (e.g., messaging, RPC, query, GraphQL).
 * Identify application boundaries and components. Use “fracture planes” <sup>[7]</sup> to help decide on application boundaries: 1/ profit and loss group 2/ business domain bounded context 3/ regulatory compliance 4/ change cadence 5/ team location 6/ risk 7/ performance isolation 8/ technology 9/ user personas.
+* Review decisions based on the following pillars <sup>[8]</sup>: 1/ operational excellence 2/ security 3/ reliability 4/ performance efficiency 5/ cost optimization.
+* Document decisions using [architectural decision records (ADRs)](https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/appendix.html).
 * Document technical requirements using [EARS](https://alistairmavin.com/ears/) patterns: "while [optional pre-condition], when [optional trigger], the [system name] shall [system response]" (e.g., "while the deployment pipeline is running, when there is a change to the pipeline structure, the pipeline shall stop and restart with the new structure").
 
 **Choose technologies (Engineering)** to address technical requirements. 
 * Consider building proof of concept (POC) for new technologies to validate feasibility. 
 * Review decisions based on the following pillars <sup>[8]</sup>: 1/ operational excellence 2/ security 3/ reliability 4/ performance efficiency 5/ cost optimization.
 * Document decisions using [architectural decision records (ADRs)](https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/appendix.html).
-* Update stories scope and estimates based on architecture and technologies.
 
 **Write code (Engineering)** to implement business and technical requirements.
 * Create one or more repositories and a single pipeline per application to reduce blast radius and increase delivery performance.
@@ -73,8 +73,7 @@ Component <sup>[4]</sup>:
 ## Ongoing research
 * A mechanism for introducing ADF into organization (inputs, tools, adoption, inspection, iteration, outputs).
 * Organizing ADF information for multiple use cases and applications.
-* Using [conditions of satisfaction (acceptance criteria)](https://www.mountaingoatsoftware.com/blog/clarifying-the-relationship-between-definition-of-done-and-conditions-of-sa) together with or instead of the requirements section.
-* Linking architecrual decision records (ADRs) to requirements and stories (e.g., referencing the related requirement(s) and story(ies) in ADR context) to check impact of an architectural change during design phase.
+* Using [conditions of satisfaction (acceptance criteria)](https://www.mountaingoatsoftware.com/blog/clarifying-the-relationship-between-definition-of-done-and-conditions-of-sa) together with or instead of the requirements.
 
 ## References
 1. Martin Fowler - [ApplicationBoundary](https://martinfowler.com/bliki/ApplicationBoundary.html)

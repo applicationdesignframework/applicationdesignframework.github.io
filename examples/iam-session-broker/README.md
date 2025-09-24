@@ -1,61 +1,83 @@
-# IAM Session Broker application
+# IAM Session Broker
 
 ## Use case
 A multi-tenant SaaS offering composes multiple applications. Today, the applications use an IAM Session Broker library to scope user access to their tenant’s boundary. The SaaS provider wants to build an IAM Session Broker service instead to reduce operational overhead and improve security posture. The service should initially support ABAC authorization strategy.
 
-### Business flow
-* SaaS admin registers users for Yellow and Blue tenants.
-* Yellow user authenticates.
-* Yellow user downloads Yellow data.
-
-## Features and stories
-Feature: Temporary credentials for applications
-* Job story: Allow applications to self-register and de-register
-* Job story: Generate temporary credentials scoped to user tenant boundary
-
-## Requirements
-
-### Definitions
+Definitions:
 * Application service principal: A principal application uses to interact with the IAM Session Broker service.
 * Application access principal: A principal application uses to interact with its data.
 * IAM Session Broker service principal: A principal IAM Session Broker service uses to provide scoped credentials for application access principal.
 
-### Business
-* Require the applications to use [ABAC](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_attribute-based-access-control.html) with `${aws:PrincipalTag/`*`key`*`}` variable in access principal policies to enforce tenant boundary.
-* Require the applications to register and provide the following access metadata:
+### Diagram
+* Green - Registration business flow.
+* Orange - Data access business flow.
+
+![](/images/iam-session-broker-use-case.svg)
+
+### Business flows
+
+#### Registration
+**Steps**
+1. Application registers with the IAM Session Broker service.
+2. SaaS admin registers user for the Yellow tenant.
+
+**Requirements**
+* Applications should register and provide the following access metadata:
   * Access principal role name (e.g. `AppAccess`)
   * Session tag key (e.g. `TenantID`)
   * JWT claim name (e.g. `custom:tenant_id`)
   * [JSON Web Key (JWK) Set URL](https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-using-tokens-verifying-a-jwt.html#amazon-cognito-user-pools-using-tokens-step-2) (e.g. `https://cognito-idp.<Region>.amazonaws.com/<userPoolId>/.well-known/jwks.json`)
-* Use application service principal role name as application name for registration.
-* Authorize registration requests for application service principals in the same account.
+* Applications should use application service principal role name as application name for registration.
+* Applications should use [ABAC](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_attribute-based-access-control.html) with `${aws:PrincipalTag/`*`key`*`}` variable in access principal policies to enforce tenant boundary.
+* Automatically authorize registration for application service principals in the IAM Session Broker environment.
+
+#### Data access
+**Steps**
+1. Yellow user authenticates.
+2. Yellow user accesses the Application to download Yellow data.
+3. Application sends Yellow tenant credentials to IAM Session Broker to get Yellow-scoped temporary security credentials.
+4. Application uses the Yellow-scoped temporary security credentials to return the data.
+
+**Requirements**
 * Authorize temporary security credentials requests for a registered application and a valid JWT.
 * Validate the provided JWT using public keys of the registered application JWK Set URL.
 * Return the scoped temporary security credentials by assuming the registered application access principal role. Tag the role session with the registered session tag key and JWT claim name value.
 
-### Technical
-* Organize the access metadata by application name.
-* Generate SDKs for multiple programming languages from service specification.
-* Collect audit logs for security and compliance.
-* Use AWS STS to provide temporary security credentials.
-* Cache the returned temporary security credentials to reduce latency.
-* Throttle applications on tenant-level to protect against noisy-neighbor.
-
 ## Architecture
 
-### Technical flow
+### Diagram
+* Data access technical flow. Registration technical flow is out of scope for brevity.
+
 ![](/images/iam-session-broker-system-architecture.svg)
 
-1. Yellow user authenticates using Identity Provider and gets a JWT.
-2. Yellow user accesses the Application with JWT to download Yellow data.
-3. Application calls IAM Session Broker to acquire Yellow-scoped temporary security credentials.
-4. IAM Session Broker verifies the JWT and returns Yellow-scoped temporary security credentials.
-5. Application returns Yellow data to the user.
+### Technical flows
+#### Registration
+**Steps**
+* Application registers with IAM Session Broker service by authenticating and providing the access principal role.
+* SaaS admin authenticates and registers users for Yellow and Blue tenants.
 
-### Application boundaries
+**Requirements**
+* Organize the access metadata by application name.
+
+#### Data access
+**Steps**
+1. Yellow user authenticates using Identity Provider and client receives a JWT.
+2. Yellow user accesses the Application with the JWT to download Yellow data.
+3. Application sends Yellow tenant JWT to IAM Session Broker.
+4. IAM Session Broker verifies the JWT, assumes the application access principal role, and returns Yellow-scoped temporary security credentials.
+* Application uses the Yellow-scoped temporary security credentials to return the data.
+
+**Requirements**
+1. Generate SDKs for multiple programming languages from service specification.
+2. Collect audit logs for security and compliance.
+3. Cache the returned temporary security credentials to reduce latency.
+4. Throttle applications on tenant-level to protect against noisy-neighbor.
+
+### Architectural decision records (ADRs)
+#### Application boundaries
 **Context**
 
-We need to define application boundaires based on the technical flow.
+We need to define application boundaries.
 
 **Decision**
 
@@ -65,17 +87,15 @@ Create [IAM Session Broker](https://github.com/applicationdesignframework/iam-se
 
 IAM Session Broker is on the critical path for upstream applications. Hence, it should maintain the agreed upon service level objectives (SLOs). Users drive the requests volume to IAM Session Broker, because the user-agent provides the JWT. Hence, IAM Session Broker performance characteristics should take interactive flows as the baseline.
 
-### IAM Session Broker components
+#### IAM Session Broker components and technologies
 
 **Context**
 
-We need to define IAM Session Broker components based on the technical flow.
+We need to define IAM Session Broker components and choose technologies.
 
 **Decision**
 
-Create the following components:
-
-![](/images/iam-session-broker-application-architecture.svg)
+![](/images/iam-session-broker-application-architecture-technology.svg)
 
 API Gateway should authorize requests and throttle if needed to prevent the “noisy neighbor” problem. API Gateway should proxy all authorized and non-throttled requests to API. The API should: 1/ fetch access metadata from access database 2/ call temporary security credentials provider to get the service principal role credentials 3/ call temporary security credentials provider using the service principal role credentials to get the application access principal role credentials 4/ return the scoped application access principal role credentials.
 
@@ -117,7 +137,7 @@ To support cross-account scenarios, we would need to replace API Gateway HTTP AP
 
 API uses [role chaining](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html#iam-term-role-chaining): 1/ get service principal role credentials 2/ get application access principal role credentials. Role chaining limits the role session to a maximum of one hour. In the worst case scenario, the API will need to call temporary security credentials provider (AWS STS) every hour for the related application.
 
-### Service discovery
+#### Service discovery
 
 **Context**
 
@@ -171,9 +191,6 @@ service/
 constants.py
 main.py  # Resources configuration application - AWS CDK
 ```
-
-## Backlog
-
 
 ## Appendix
 

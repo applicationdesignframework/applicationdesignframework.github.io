@@ -1,35 +1,53 @@
+# [Title]
+
 ## Use case
 
-### Business flow
+### Diagram
 
-## Features and stories
+### Business flows
 
-## Requirements
+#### [Title]
+**Assumptions**
 
-### Business
+**Steps**
 
-### Technical
+**Requirements**
 
 ## Architecture
 
-### Technical flow
+### Technical flows
 
-### Application boundaries
+#### [Title]
+**Assumptions**
+
+**Steps**
+
+**Requirements**
+
+### Architectural decision records (ADRs)
+
+#### Application boundaries
 **Context**
+
+**Options**
 
 **Decision**
 
 **Consequences**
 
-### Application X components
+#### Application X components
 **Context**
+
+**Options**
 
 **Decision**
 
 **Consequences**
 
-### [Title]
+#### [Title]
 **Context**
+
+**Options**
 
 **Decision**
 
@@ -42,5 +60,3 @@ Application X: `application-x`
 
 ### Project structure
 **Application X**
-
-## Backlog

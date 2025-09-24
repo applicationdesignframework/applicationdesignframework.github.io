@@ -4,29 +4,43 @@
 ## Use case
 Offer virtual machines (instances) as a service.
 
-### Business flow
+### Diagram
 ![](/images/ec2-use-case.svg)
 
-## Features and stories
-Instance type with Intel CPU and NVMe SSD instance store volumes
-* As a developer, I want to launch an instance
-* As a developer, I want to stop an instance
-* As a developer, I want to delete an instance
-* As a budget owner, I want to know the usage cost of an instance
-* As a security engineer, I want to define instance’s network perimeter
+### Business flows
+#### Launch instance
+**Steps**
+1. Navigate to Console Home and sign-in.
+2. Navigate to EC2 Home Console.
+3. Select the Instances menu.
+4. Click on Launch, fill the form, and submit.
 
-## Requirements
+**Requirements**
+
 Requirements are not described in this example for brevity.
 
 ## Architecture
 
-### Technical flow
+### Diagram
 ![](/images/ec2-system-architecture.svg)
 
-### Application boundaries
+### Technical flows
+
+#### Launch instance
+**Steps**
+
+Steps are not described in this example for brevity.
+
+**Requirements**
+
+Requirements are not described in this example for brevity.
+
+### Architectural decision records (ADRs)
+
+#### Application boundaries
 **Context**
 
-We need to define application boundaires based on the technical flow.
+We need to define application boundaries.
 
 **Decision**
 
@@ -34,11 +48,11 @@ The decision is to create two applications: _EC2 Instances Console_ and _EC2 Ins
 
 **Consequences**
 
-### EC2 Instances Console components
+#### EC2 Instances Console components
 
 **Context**
 
-We need to define EC2 Instances Console components based on the technical flow.
+We need to define EC2 Instances Console components.
 
 **Decision**
 
@@ -48,7 +62,7 @@ _EC2 Instances Console_ application contains _Toolchain_ and _Service_ component
 
 **Consequences**
 
-### EC2 Instances Console technologies
+#### EC2 Instances Console technologies
 
 **Context**
 
@@ -56,12 +70,12 @@ We need to choose technologies to implement EC2 Instances Console components.
 
 **Decision**
 
-![](/images/ec2-technology-selection.svg)
+![](/images/ec2-application-technology.svg)
 
 **Consequences**
 
 
-### EC2 Instances Control Plane components
+#### EC2 Instances Control Plane components
 
 **Context**
 
