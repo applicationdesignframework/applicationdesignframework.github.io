@@ -22,14 +22,14 @@ Definitions:
 2. SaaS admin registers user for the Yellow tenant.
 
 **Requirements**
-* Applications should register and provide the following access metadata:
+* Applications shall register and provide the following access metadata:
   * Access principal role name (e.g. `AppAccess`)
   * Session tag key (e.g. `TenantID`)
   * JWT claim name (e.g. `custom:tenant_id`)
   * [JSON Web Key (JWK) Set URL](https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-using-tokens-verifying-a-jwt.html#amazon-cognito-user-pools-using-tokens-step-2) (e.g. `https://cognito-idp.<Region>.amazonaws.com/<userPoolId>/.well-known/jwks.json`)
-* Applications should use application service principal role name as application name for registration.
-* Applications should use [ABAC](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_attribute-based-access-control.html) with `${aws:PrincipalTag/`*`key`*`}` variable in access principal policies to enforce tenant boundary.
-* Automatically authorize registration for application service principals in the IAM Session Broker environment.
+* Applications shall use application service principal role name as application name for registration.
+* Applications shall use [ABAC](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_attribute-based-access-control.html) with `${aws:PrincipalTag/`*`key`*`}` variable in access principal policies to enforce tenant boundary.
+* IAM Session Broker shall automatically authorize registration requests from the same environment.
 
 #### Data access
 **Steps**
@@ -39,9 +39,9 @@ Definitions:
 4. Application uses the Yellow-scoped temporary security credentials to return the data.
 
 **Requirements**
-* Authorize temporary security credentials requests for a registered application and a valid JWT.
-* Validate the provided JWT using public keys of the registered application JWK Set URL.
-* Return the scoped temporary security credentials by assuming the registered application access principal role. Tag the role session with the registered session tag key and JWT claim name value.
+* IAM Session Broker shall authorize temporary security credentials requests for a registered application and a valid JWT.
+* IAM Session Broker shall validate the provided JWT using public keys of the registered application JWK Set URL.
+* IAM Session Broker shall return the scoped temporary security credentials by assuming the registered application access principal role; tag the role session with the registered session tag key and JWT claim name value.
 
 ## Architecture
 
@@ -57,7 +57,7 @@ Definitions:
 * SaaS admin authenticates and registers users for Yellow and Blue tenants.
 
 **Requirements**
-* Organize the access metadata by application name.
+* IAM Session Broker shall organize the access metadata by application name.
 
 #### Data access
 **Steps**
@@ -68,10 +68,10 @@ Definitions:
 5. Application uses the Yellow-scoped temporary security credentials to return the data.
 
 **Requirements**
-1. Generate SDKs for multiple programming languages from service specification.
-2. Collect audit logs for security and compliance.
-3. Cache the returned temporary security credentials to reduce latency.
-4. Throttle applications on tenant-level to protect against noisy-neighbor.
+1. IAM Session Broker shall generate SDKs for multiple programming languages from service specification.
+2. IAM Session Broker shall collect audit logs for security and compliance.
+3. IAM Session Broker shall cache the returned temporary security credentials to reduce latency.
+4. IAM Session Broker shall throttle applications on tenant-level to protect against noisy-neighbor.
 
 ### Architectural decision records (ADRs)
 #### Application boundaries
