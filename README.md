@@ -1,7 +1,7 @@
 # Application Design Framework (ADF)
 
 ## Purpose
-Is your organization struggling to ship software on-time, on-budget, and in-line with expectations? The Application Design Framework (ADF) helps address these challenges by transforming abstract business needs into concrete architectural decisions through *easy to use and proven* guidelines. Teams can accelerate innovation while building resilient, secure, and cost-effective solutions. This approach benefits executives (reduced time-to-market), product managers (accurate ETAs), and engineers (alignment on requirements). The result? Faster delivery, lower risk, and more resilient, cost-effective solutions.
+Is your organization struggling to ship software on-time, on-budget, and in-line with expectations? The Application Design Framework (ADF) helps address these challenges by transforming abstract business needs into concrete architectural decisions through easy to use and proven guidelines. Teams can accelerate innovation while building resilient, secure, and cost-effective solutions. This approach benefits executives (reduced time-to-market), product managers (accurate ETAs), and engineers (alignment on requirements). The result? Faster delivery, lower risk, and more resilient, cost-effective solutions.
 
 ## Definitions
 Application boundary <sup>[1]</sup>:
