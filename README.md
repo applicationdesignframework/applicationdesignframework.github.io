@@ -3,6 +3,11 @@
 ## Purpose
 Is your organization struggling to ship software on-time, on-budget, and in-line with expectations? The Application Design Framework (ADF) helps address these challenges by transforming abstract business needs into concrete architectural decisions through easy to use and proven guidelines. This approach benefits executives (reduced time-to-market), product managers (accurate ETAs), and engineers (alignment on requirements). The result? Faster delivery, lower risk, and more resilient, cost-effective solutions.
 
+## Tenets
+1. **Use case-driven.** Every decision should be guided by the use case. If it doesn't serve one, it's out of scope.
+2. **Traceability matters.** Every use case should map to architecture, and architecture to code. Anyone should be able to follow the thread.
+3. **Architecture first, technology second.** Architecture satisfies business and technical requirements; technology implements them. Separate architecture and technology decisions to reduce cognitive load.
+
 ## Definitions
 Application boundary <sup>[1]</sup>:
 * A **body of code** that's seen by developers as a single unit.
