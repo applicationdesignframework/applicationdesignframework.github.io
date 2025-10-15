@@ -27,8 +27,6 @@ Component <sup>[4]</sup>:
 
 > Application boundary may change over time.
 
-> Estimates are more accurate after choosing technologies.
-
 ## Guidelines
 
 ![](/images/adf-guidelines.svg)
