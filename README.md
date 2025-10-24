@@ -35,7 +35,6 @@ Component <sup>[4]</sup>:
 * Answer the 5 customer questions <sup>[5]</sup>: 1/ who is the customer and what insights do we have about them? 2/ what is the prevailing customer problem/opportunity? what data informed this? 3/ what is the solution? why is it the right solution to address the customer need versus other alternatives? 4/ how would we describe the end-to-end customer experience (business flows)? what is the most important customer benefit? 5/ how will we define and measure success?
 * Describe business flows using [domain storytelling](https://domainstorytelling.org/quick-start-guide), [story maps](https://www.mountaingoatsoftware.com/blog/user-story-mapping-how-to-create-story-maps), or [event storming](https://en.wikipedia.org/wiki/Event_storming).
 * Consider writing [press release/frequently asked questions (PR/FAQ)](https://www.aboutamazon.com/news/workplace/an-insider-look-at-amazons-culture-and-processes) narrative ([example](https://www.allthingsdistributed.com/2024/11/aws-lambda-turns-10-a-rare-look-at-the-doc-that-started-it.html)) or [pitch](https://basecamp.com/shapeup/1.5-chapter-06).
-* Consider the following story types <sup>[6]</sup>: 1/ user story – "as a [type of user] I [want this thing] so that [I can accomplish this goal]" (e.g., "as a site visitor, I want to see new content when I come to the site, so I come back more often") 2/ job story – "when [situation], I want to [motivation], so I can [expected outcome]" (e.g., "when it’s dinner time tonight, I want to have pizza so I can easily feed my friends" 3/ feature-driven development – "[action] the [result] [by/for/of/to] a(n) [object]" (e.g., "generate a unique identifier for a transaction").
 * Identify bounded contexts and external dependencies.
 * Document business requirements using [EARS](https://alistairmavin.com/ears/) patterns: "while [optional pre-condition], when [optional trigger], the [system name] shall [system response]" (e.g., "while the user is signed-in, when the user asks to change the password, the application shall re-authenticate the user").
 
@@ -77,9 +76,11 @@ Component <sup>[4]</sup>:
 * [Azure Decision Guides](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/decision-guides/) - choose Azure services that might be right for you and your use cases.
 
 ## Ongoing research
+* Backlog planning - from use cases and architecture to code:
+  * Stories break down into tasks. Requirements are inputs to tasks. [Conditions of satisfaction (acceptance criteria)](https://www.mountaingoatsoftware.com/blog/clarifying-the-relationship-between-definition-of-done-and-conditions-of-sa) are the tasks outputs. Map flows to stories and requirements to tasks for traceability.
+  * Consider the following story types <sup>[6]</sup>: 1/ user story – "as a [type of user] I [want this thing] so that [I can accomplish this goal]" (e.g., "as a site visitor, I want to see new content when I come to the site, so I come back more often") 2/ job story – "when [situation], I want to [motivation], so I can [expected outcome]" (e.g., "when it’s dinner time tonight, I want to have pizza so I can easily feed my friends" 3/ feature-driven development – "[action] the [result] [by/for/of/to] a(n) [object]" (e.g., "generate a unique identifier for a transaction").
 * A mechanism for introducing ADF into organization (inputs, tools, adoption, inspection, iteration, outputs).
 * Organizing ADF information for multiple use cases and applications.
-* Using [conditions of satisfaction (acceptance criteria)](https://www.mountaingoatsoftware.com/blog/clarifying-the-relationship-between-definition-of-done-and-conditions-of-sa) together with or instead of the requirements.
 
 ## References
 1. Martin Fowler - [ApplicationBoundary](https://martinfowler.com/bliki/ApplicationBoundary.html)
