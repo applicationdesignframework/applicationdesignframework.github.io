@@ -1,7 +1,7 @@
 # Application Design Framework (ADF)
 
 ## Introduction
-While individual use cases are straightforward to design in isolation, their combination often exposes conflicting architectural requirements. Design decisions that optimize one capability can compromise another, creating complex interdependencies across the system. As this complexity grows, the design phase stretches into weeks, and implementation incurs further delays due to non–value-added rework. A key driver of these delays is teams losing alignment between use cases and architecture.
+Designing individual use cases is straightforward until you need alignment to build a complete system — it often grinds to a halt, resulting in weeks of delays and non—value-added rework.
 
 The Application Design Framework (ADF) helps maintain tight alignment between use cases and architecture. Using ADF’s proven, prescriptive guidelines, you can shorten the design phase from weeks to days and avoid non–value-added rework. The result? You’ll ship the right solution faster.
 
