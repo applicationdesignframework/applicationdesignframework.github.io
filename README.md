@@ -8,7 +8,7 @@ The Application Design Framework (ADF) helps maintain tight alignment between us
 ## Tenets
 1. **Use case-driven.** Every decision should be guided by the use case. If it doesn't serve one, it's out of scope.
 2. **Traceability matters.** Every use case should map to architecture, and architecture to code. Anyone should be able to follow the thread.
-3. **Architecture first, technology second.** Architecture satisfies business and technical requirements; technology implements them. Separate architecture and technology decisions to reduce cognitive load.
+3. **Architecture first, technology second.** Separate architecture and technology decisions to reduce cognitive load.
 
 ## Definitions
 Application boundary <sup>[1]</sup>:
