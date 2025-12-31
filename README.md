@@ -5,7 +5,7 @@ Application design phase often stretches into weeks, with non–value-added rewo
 
 The Application Design Framework (ADF) helps maintain tight alignment between use cases and architecture through proven, prescriptive guidelines. With ADF, teams can shorten the design phase from weeks to days and avoid non–value-added rework–shipping the right solution faster.
 
-## Tenets
+## Tenets (Principles)
 1. **Use case-driven.** Every decision should be guided by the use case. If it doesn't serve one, it's out of scope.
 2. **Traceability matters.** Every use case should map to architecture, and architecture to code. Anyone should be able to follow the thread.
 3. **Architecture first, technology second.** Separate architecture and technology decisions to reduce cognitive load.
@@ -40,7 +40,7 @@ Component <sup>[4]</sup>:
 **Define architecture (Product, Engineering)** to address business and define technical requirements. 
 * Define technical flows (e.g., load balancer &#8594; API &#8594; database; not ELB &#8594; AWS Lambda + Python &#8594; Amazon RDS) based on business flows. 
 * Consider the following integration dimensions <sup>[7]</sup>: 1/ service discovery (e.g., IP addresses, DNS) 2/ data format (e.g., binary, XML, JSON, protobuf, Avro) 3/ interaction type (e.g., sync, async) 4/ interaction style (e.g., messaging, RPC, query, GraphQL).
-* Identify application boundaries and components. Use “fracture planes” <sup>[8]</sup> to help decide on application boundaries: 1/ profit and loss group 2/ business domain bounded context 3/ regulatory compliance 4/ change cadence 5/ team location 6/ risk 7/ performance isolation 8/ technology 9/ user personas.
+* Identify application boundaries and components. Use “fracture planes” <sup>[8]</sup> to help decide on application boundaries: 1/ profit and loss group 2/ business domain [bounded context](https://martinfowler.com/bliki/BoundedContext.html) 3/ regulatory compliance 4/ change cadence 5/ team location 6/ risk 7/ performance isolation 8/ technology 9/ user personas.
 * Review decisions based on the following pillars <sup>[9]</sup>: 1/ operational excellence 2/ security 3/ reliability 4/ performance efficiency 5/ cost optimization.
 * Document decisions using [architectural decision records (ADRs)](https://docs.aws.amazon.com/prescriptive-guidance/latest/architectural-decision-records/appendix.html).
 * Document technical requirements using [EARS](https://alistairmavin.com/ears/) patterns: "while [optional pre-condition], when [optional trigger], the [system name] shall [system response]" (e.g., "while the deployment pipeline is running, when there is a change to the pipeline structure, the pipeline shall stop and restart with the new structure").
